@@ -1,0 +1,23 @@
+{
+  "name": "vue-management-template",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "element-plus": "^1.0.2-beta.40",
+    "js-cookie": "^2.2.1",
+    "qs": "^6.10.1",
+    "vue": "^3.0.4",
+    "vue-router": "^4.0.0-beta.6",
+    "vuex": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.4",
+    "vite": "^1.0.0-rc.13",
+    "less": "^3.12.2",
+    "less-loader": "^7.0.2"
+  }
+}
