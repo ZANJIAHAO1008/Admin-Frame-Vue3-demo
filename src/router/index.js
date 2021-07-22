@@ -1,6 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { ElLoading } from "element-plus";
 import { getToken } from '../util/auth.js';
+import NProgress from 'nprogress';//加载进度条
+import 'nprogress/nprogress.css';
+// 进度条配置项
+NProgress.configure({
+    showSpinner: false
+});
 
 //默认不需要权限的页面
 const constantRouterMap = [
@@ -85,8 +91,9 @@ const router = createRouter({
 const whiteList = ['/login', '/404', '/403'];
 
 router.beforeEach((to, from, next) => {
-    document.title = `后台管理系统 - ${to.meta.title} `; //添加title
+    document.title = `ZAN-ADMIN - ${to.meta.title} `; //添加title
     const user = getToken();//获取token to.path !== '/login'
+    NProgress.start();// 路由跳转前钩子函数中 - 执行进度条开始加载
     if (user) {
         if (to.path === '/') {
             next();
@@ -103,6 +110,12 @@ router.beforeEach((to, from, next) => {
         }
 
     }
+});
+
+
+// 路由跳转后钩子函数中 - 执行进度条加载结束
+router.afterEach(() => {
+    NProgress.done();
 });
 
 export default router;
