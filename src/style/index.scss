@@ -1,8 +1,23 @@
 
-.zan-pagination{
+.zan-pagination {
   text-align: right;
   margin-top: 12px;
 }
-.zan-nav,.zan-table{
+
+.zan-nav, .zan-table {
   box-sizing: border-box;
+}
+
+#nprogress .bar {
+  background: rgb(48, 92, 208) !important; // 加载进度条自定义颜色
+}
+
+#nprogress {
+  .bar {
+    z-index: 15031;
+  }
+
+  .spinner {
+    z-index: 15031;
+  }
 }

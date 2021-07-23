@@ -1,13 +1,13 @@
 <template>
   <div class="app-wrapper">
     <el-container style="height: 100vh">
-      <el-header height="70px">
-        <Header></Header>
-      </el-header>
+      <el-aside width="auto">
+        <side-bar></side-bar>
+      </el-aside>
       <el-container>
-        <el-aside width="auto">
-          <side-bar></side-bar>
-        </el-aside>
+        <el-header height="70px">
+          <Header></Header>
+        </el-header>
         <el-main>
           <Tags></Tags>
           <div class="content">
@@ -77,6 +77,7 @@ export default defineComponent({
       overflow-y: auto;
       height: calc(100vh - 138px);
       color: #5e6d82;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     }
   }
 

@@ -24,12 +24,58 @@
 
 //input
 .el-input__inner {
-  height: 34px!important;
-  line-height: 34px!important;
+  height: 34px !important;
+  line-height: 34px !important;
 }
+
 .el-input__prefix {
-  font-size: 18px!important;
+  font-size: 18px !important;
 }
 
 //form
+
+
+//tag
+.el-tag--dark {
+  background-color: rgb(48, 92, 208) !important;
+  border-color: rgb(48, 92, 208) !important;
+}
+
+.el-tag--plain {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(48, 92, 208) !important;
+  color: rgb(48, 92, 208) !important;
+}
+
+//menu
+
+.el-menu {
+  border-right: 0;
+}
+
+.el-menu .el-menu-item.is-active {
+  background-color: rgb(64, 158, 255) !important;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 0;
+}
+
+.sidebar-el-menu:not(.el-menu--collapse) {
+  width: 200px;
+}
+
+.sidebar > ul {
+  height: calc(100% - 71px);
+}
+
+.el-menu-item:focus,
+.el-menu-item:hover {
+  outline: 0px;
+  background-color: #606266 !important;
+}
+
+.el-submenu__title:hover {
+  background-color: #606266 !important;
+}
 

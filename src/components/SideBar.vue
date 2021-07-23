@@ -1,15 +1,18 @@
 <template>
   <div class="sidebar">
+    <transition name="el-zoom-in-center">
+      <span class="zan-title">{{ collapse ? 'Z' : 'ZAN-ADMIN' }}</span>
+    </transition>
     <el-menu
-      :default-active="onRoutes"
-      class="sidebar-el-menu"
-      :collapse="collapse"
-      collapse-transition
-      unique-opened
-      background-color="rgb(0, 21, 41)"
-      active-text-color="#ffffff"
-      text-color="#C0C4CC"
-      router
+        :default-active="onRoutes"
+        class="sidebar-el-menu"
+        :collapse="collapse"
+        collapse-transition
+        unique-opened
+        background-color="rgb(0, 21, 41)"
+        active-text-color="#ffffff"
+        text-color="#C0C4CC"
+        router
     >
       <template v-for="item in menuItem">
         <template v-if="item.children">
@@ -138,8 +141,15 @@ export default defineComponent({
 .sidebar {
   height: calc(100%);
 
-  .el-menu {
-    border-right: 0;
+  .zan-title {
+    display: block;
+    height: 71px;
+    line-height: 71px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    background: #303133;
+    color: hsla(0, 0%, 100%, .7);
   }
 
   .fa {
@@ -150,30 +160,5 @@ export default defineComponent({
     font-size: 18px;
     color: #c0c4cc;
   }
-
-  .el-menu .el-menu-item.is-active {
-    background-color: rgb(64, 158, 255) !important;
-  }
-}
-.sidebar::-webkit-scrollbar {
-  width: 0;
-}
-
-.sidebar-el-menu:not(.el-menu--collapse) {
-  width: 200px;
-}
-
-.sidebar > ul {
-  height: 100%;
-}
-
-.el-menu-item:focus,
-.el-menu-item:hover {
-  outline: 0px;
-  background-color: #606266 !important;
-}
-
-.el-submenu__title:hover {
-  background-color: #606266 !important;
 }
 </style>

@@ -4,7 +4,6 @@
       <i v-if="collapse" class="fa fa-indent"></i>
       <i v-else class="fa fa-dedent"></i>
     </div>
-    <span class="collapse-title">后台管理系统</span>
     <div class="collapse-right">
       <el-tooltip class="item" effect="dark" content="全屏" placement="bottom">
         <i class="fa fa-arrows-alt" @click="requestFullScreen('body')"></i>
@@ -18,16 +17,12 @@
       </div>
       <!-- 用户名下拉菜单 -->
       <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link" style="color: #ffffff;">
+                    <span class="el-dropdown-link">
                         {{ username }}
                         <i class="el-icon-caret-bottom"></i>
                     </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-link type="primary" href="https://github.com/ZANJIAHAO1008/vue-admin-manage" :underline="false"
-                     target="_blank">
-              <el-dropdown-item>项目仓库</el-dropdown-item>
-            </el-link>
             <el-dropdown-item divided command="signOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -112,8 +107,8 @@ export default defineComponent({
   width: 100%;
   height: 70px;
   font-size: 22px;
-  color: #fff;
-  background: #242f42;
+  color: #616161;
+  background: #FFF;
 
   .collapse-btn {
     float: left;
@@ -122,11 +117,6 @@ export default defineComponent({
     line-height: 70px;
   }
 
-  .collapse-title {
-    float: left;
-    width: 250px;
-    line-height: 70px;
-  }
 
   .el-icon-s-fold, .el-icon-s-unfold {
     font-size: 25px;

@@ -1,17 +1,21 @@
 <template>
   <div class="login-container">
     <div class="login-body">
-      <div class="l-title">ZAN-ADMIN</div>
+      <div class="logo">
+        <img alt="" src="../assets/image/logo1.png">
+      </div>
       <div v-show="loginStatus">
-        <el-form   @submit.native.prevent   hide-required-asterisk ref="loginRef" :model="param" :rules="loginRules">
-          <el-form-item  prop="username">
-            <el-input clearable prefix-icon="fa fa-user-o"   v-model.trim="param.username" placeholder="请输入用户名"></el-input>
+        <el-form ref="loginRef" :model="param" :rules="loginRules" hide-required-asterisk @submit.native.prevent>
+          <el-form-item prop="username">
+            <el-input v-model.trim="param.username" clearable placeholder="请输入用户名"
+                      prefix-icon="fa fa-user-o"></el-input>
           </el-form-item>
-          <el-form-item  prop="password">
-            <el-input clearable prefix-icon="fa fa-lock"   @keyup.enter="submitForm" placeholder="请输入密码" v-model.trim="param.password" show-password></el-input>
+          <el-form-item prop="password">
+            <el-input v-model.trim="param.password" clearable placeholder="请输入密码" prefix-icon="fa fa-lock"
+                      show-password @keyup.enter="submitForm"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary"  style="width: 100% " :loading="loading" @click="submitForm()">登录</el-button>
+            <el-button :loading="loading" style="width: 100% " type="primary" @click="submitForm()">登录</el-button>
           </el-form-item>
         </el-form>
         <div class="other-content">
@@ -20,37 +24,42 @@
         </div>
       </div>
       <div v-show="!loginStatus">
-        <el-form   @submit.native.prevent   hide-required-asterisk ref="registerRef" :model="register" :rules="registerRules">
-          <el-form-item  prop="username">
-            <el-input clearable prefix-icon="fa fa-user-o"   v-model.trim="register.username" placeholder="请输入用户名"></el-input>
+        <el-form ref="registerRef" :model="register" :rules="registerRules" hide-required-asterisk
+                 @submit.native.prevent>
+          <el-form-item prop="username">
+            <el-input v-model.trim="register.username" clearable placeholder="请输入用户名"
+                      prefix-icon="fa fa-user-o"></el-input>
           </el-form-item>
-          <el-form-item  prop="password">
-            <el-input clearable prefix-icon="fa fa-lock" autocomplete="off"   placeholder="至少6位密码" v-model.trim="register.password" ></el-input>
+          <el-form-item prop="password">
+            <el-input v-model.trim="register.password" autocomplete="off" clearable placeholder="至少6位密码"
+                      prefix-icon="fa fa-lock"></el-input>
           </el-form-item>
-          <el-form-item  prop="checkPass">
-            <el-input clearable prefix-icon="fa fa-lock" type="password"   placeholder="再次输入密码" v-model.trim="register.checkPass" ></el-input>
+          <el-form-item prop="checkPass">
+            <el-input v-model.trim="register.checkPass" clearable placeholder="再次输入密码"
+                      prefix-icon="fa fa-lock"></el-input>
           </el-form-item>
-          <el-form-item  prop="staffName">
-            <el-input clearable prefix-icon="fa fa-user-o"   v-model.trim="register.staffName" placeholder="请输入姓名"></el-input>
+          <el-form-item prop="staffName">
+            <el-input v-model.trim="register.staffName" clearable placeholder="请输入姓名"
+                      prefix-icon="fa fa-user-o"></el-input>
           </el-form-item>
           <el-form-item>
             <el-radio-group v-model="register.sex">
-              <el-radio label="0" >男</el-radio>
-              <el-radio label="1" >女</el-radio>
+              <el-radio label="0">男</el-radio>
+              <el-radio label="1">女</el-radio>
             </el-radio-group>
           </el-form-item>
-<!--          <el-form-item  prop="phone">-->
-<!--            <el-input clearable prefix-icon="fa fa-user-o"   v-model.trim="register.phone" placeholder="请输入手机号"></el-input>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item  prop="address">-->
-<!--            <el-input clearable prefix-icon="fa fa-user-o"   v-model.trim="register.address" placeholder="请输入家庭地址"></el-input>-->
-<!--          </el-form-item>-->
+          <!--          <el-form-item  prop="phone">-->
+          <!--            <el-input clearable prefix-icon="fa fa-user-o"   v-model.trim="register.phone" placeholder="请输入手机号"></el-input>-->
+          <!--          </el-form-item>-->
+          <!--          <el-form-item  prop="address">-->
+          <!--            <el-input clearable prefix-icon="fa fa-user-o"   v-model.trim="register.address" placeholder="请输入家庭地址"></el-input>-->
+          <!--          </el-form-item>-->
           <el-form-item>
-            <el-button type="primary"  style="width: 100% "  @click="registerForm()">注册</el-button>
+            <el-button style="width: 100% " type="primary" @click="registerForm()">注册</el-button>
           </el-form-item>
         </el-form>
         <div class="other-content">
-          <el-button type="text" @click="loginStatus = true;" style="width: 100% " >使用已有账号登陆</el-button>
+          <el-button style="width: 100% " type="text" @click="loginStatus = true;">使用已有账号登陆</el-button>
         </div>
       </div>
     </div>
@@ -58,9 +67,10 @@
 </template>
 <script>
 import {defineComponent, getCurrentInstance, toRefs, reactive, ref} from 'vue'
-import { useRouter} from 'vue-router'
-import { login,register } from '../api/user.js'
+import {useRouter} from 'vue-router'
+import {login, register} from '../api/user.js'
 import Cookies from "js-cookie";
+
 export default defineComponent({
   setup() {
     let {proxy} = getCurrentInstance(); // vue原型
@@ -90,16 +100,16 @@ export default defineComponent({
 
     const state = reactive({
       param: {
-        username: "",
-        password: ""
+        username: "admin",
+        password: "123456"
       }, //登录账号
-      loginStatus:true,//登陆or注册 true  false
-      register:{
-        username:"",
-        password:"",
-        checkPass:"",
-        sex:'0',
-        staffName:"",
+      loginStatus: true,//登陆or注册 true  false
+      register: {
+        username: "",
+        password: "",
+        checkPass: "",
+        sex: '0',
+        staffName: "",
       },
       loginRules: { //登陆验证
         username: [
@@ -109,15 +119,15 @@ export default defineComponent({
           {required: true, message: "请输入密码", trigger: "blur"}
         ]
       },
-      registerRules:{  //注册验证
+      registerRules: {  //注册验证
         username: [
           {required: true, message: "请输入用户名", trigger: "blur"}
         ],
         password: [
-          { validator: validatePass, trigger: 'blur' }
+          {validator: validatePass, trigger: 'blur'}
         ],
         checkPass: [
-          { validator: validateCheckPass, trigger: 'blur' }
+          {validator: validateCheckPass, trigger: 'blur'}
         ],
       },
       loading: false //缓冲
@@ -125,20 +135,23 @@ export default defineComponent({
 
 
     const submitForm = () => {
+      console.log(loginRef)
       loginRef.value.validate(valid => {
         if (valid) {
           state.loading = true;
+          proxy._public.debounce(() => {
             login(
                 {
                   ...state.param
                 }
-            ).then(res=>{
-              if(res.data){
-                Cookies.set("token",res.data);
+            ).then(res => {
+              if (res.data) {
+                Cookies.set("token", res.data);
                 router.push({path: '/homePage'})
               }
               state.loading = false;
             })
+          }, 1000)
         }
       });
     }
@@ -148,7 +161,7 @@ export default defineComponent({
         if (valid) {
           register({
             ...state.register
-          }).then(()=>{
+          }).then(() => {
 
           })
         }
@@ -172,7 +185,6 @@ export default defineComponent({
   height: 100vh;
   background-size: 100%;
   background-image: url(../assets/image/background.jpg);
-
   .login-body {
     position: absolute;
     left: 50%;
@@ -180,13 +192,20 @@ export default defineComponent({
     width: 400px;
     background: #ffffff;
     overflow: hidden;
-    padding:  30px 26px 24px 26px;
+    padding: 0 26px 24px 26px;
     box-sizing: border-box;
     margin-left: -198px;
-    margin-top: -230px;
+    margin-top: -255px;
     opacity: 0.85;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     border-radius: 4px;
+
+    .logo {
+      img {
+        height: 141px;
+        padding-bottom: 12px;
+      }
+    }
 
     .l-title {
       padding: 8px 0 24px 0;
@@ -196,8 +215,9 @@ export default defineComponent({
       text-align: center;
     }
   }
-  .other-content{
-    display:flex;
+
+  .other-content {
+    display: flex;
     justify-content: space-between;
   }
 }
