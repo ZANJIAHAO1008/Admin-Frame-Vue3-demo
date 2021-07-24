@@ -68,11 +68,13 @@
 <script>
 import {defineComponent, getCurrentInstance, toRefs, reactive, ref} from 'vue'
 import {useRouter} from 'vue-router'
-import {login, register} from '../api/user.js'
+import {login, register, getUserInfo} from '../api/user.js'
 import Cookies from "js-cookie";
+import {useStore} from "vuex";
 
 export default defineComponent({
   setup() {
+    const store = useStore(); //vuex仓库
     let {proxy} = getCurrentInstance(); // vue原型
     const loginRef = ref(null);  //登录ref
     const registerRef = ref(null);  //注册ref
@@ -133,9 +135,16 @@ export default defineComponent({
       loading: false //缓冲
     })
 
+    const getInfo = (val) => {
+      getUserInfo({username: val}).then(res => {
+        if (res.data) {
+          store.commit('SET_USER_INFO', res.data);
+        }
+      })
+    }
+
 
     const submitForm = () => {
-      console.log(loginRef)
       loginRef.value.validate(valid => {
         if (valid) {
           state.loading = true;
@@ -145,12 +154,13 @@ export default defineComponent({
                   ...state.param
                 }
             ).then(res => {
-              if (res.data) {
-                Cookies.set("token", res.data);
+              if (res?.data) {
+                Cookies.set("token", res.data); //存储token
+                getInfo(state.param.username); //查询个人信息
                 router.push({path: '/homePage'})
               }
-              state.loading = false;
             })
+            state.loading = false;
           }, 1000)
         }
       });
@@ -173,7 +183,7 @@ export default defineComponent({
       loginRef,
       registerRef,
       submitForm,
-      registerForm
+      registerForm,
     }
   }
 })
@@ -183,8 +193,9 @@ export default defineComponent({
   position: relative;
   width: 100%;
   height: 100vh;
-  background-size: 100%;
-  background-image: url(../assets/image/background.jpg);
+  background-size: 100% 100%;
+  background: #F7F7F7;
+  //background-image: url(../assets/image/background.jpg);
   .login-body {
     position: absolute;
     left: 50%;

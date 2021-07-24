@@ -13,7 +13,7 @@
       </el-tooltip>
       <!-- 用户头像 -->
       <div class="user-avatar">
-        <img src="../assets/image/img.jpg"/>
+        <img src="../../assets/image/img.jpg"/>
       </div>
       <!-- 用户名下拉菜单 -->
       <el-dropdown class="user-name" trigger="click" @command="handleCommand">
@@ -24,26 +24,32 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item divided command="signOut">退出登录</el-dropdown-item>
+            <el-dropdown-item command="checkPass" divided>修改密码</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
     </div>
+    <checkPass v-model:passVisible="passVisible"></checkPass>
   </div>
 </template>
 <script>
-import {defineComponent, getCurrentInstance, toRefs, reactive, ref, computed, watch} from 'vue'
+import {defineComponent, getCurrentInstance, toRefs, reactive, ref, computed, watch, provide, shallowRef} from 'vue'
 import {useStore} from 'vuex';
 import {useRouter} from "vue-router";
 import {ElMessage} from 'element-plus'
-
+import checkPass from "../Setting/checkPass.vue";
 export default defineComponent({
   name: "header",
+  components: {
+    checkPass
+  },
   setup() {
     const store = useStore(); //vuex
     const router = useRouter(); //路由
     const state = reactive({
       collapse: computed(() => store.state.collapse),
-      username: computed(() => 'admin'),
+      username: computed(() => store.state.user.staffName),
+      passVisible: false, //修改密码弹框
     });
 
 
@@ -84,6 +90,8 @@ export default defineComponent({
         localStorage.removeItem("person_name");
         router.push("/login");
         ElMessage.success("登出成功");
+      } else if (command == 'checkPass') {
+        state.passVisible = true;
       }
     };
 
@@ -95,8 +103,8 @@ export default defineComponent({
       ...toRefs(state),
       switchCollapse,
       handleCommand,
+      toGetMessage,
       requestFullScreen,
-      toGetMessage
     }
   }
 })

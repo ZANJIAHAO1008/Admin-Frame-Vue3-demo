@@ -70,7 +70,14 @@ export default function (config, options) {
         response => {
             //返回请求的时候关闭loading
             !loadingStatus || loading.close(), loading = null;
-            return rawData ? response :JSON.parse(response.data);
+
+            let data = JSON.parse(response.data);
+
+            if (data.code == 200) { //如果返回成功则返回数据 错误只能拿到null
+                return rawData ? response : data;
+            } else {
+                return null;
+            }
         },
         error => {
             //返回请求的时候关闭loading

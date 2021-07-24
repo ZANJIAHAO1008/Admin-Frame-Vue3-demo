@@ -2,8 +2,9 @@ import {createStore} from 'vuex'
 
 export default createStore({
     state: {
-        tagsList: [],
-        collapse: false
+        tagsList: [], //tag标签存储
+        collapse: false, //侧边栏展开关闭
+        user: {} //用户信息
     },
     mutations: {
         setTags(state, data) { //选中在tagsList添加菜单
@@ -15,6 +16,10 @@ export default createStore({
         // 侧边栏折叠
         switchCollapse(state, data) {
             state.collapse = data;
+        },
+        //存储user数据
+        SET_USER_INFO(state, data) {
+            state.user = data;
         }
     },
     actions: {},

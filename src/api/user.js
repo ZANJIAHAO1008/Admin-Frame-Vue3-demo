@@ -27,9 +27,17 @@ export function getAll(data) {   //例子  用户列表查询
     return request({
         url: '/user/getAll',
         method: 'get',
-        params:data,
-    },{
-        loading:true,
+        params: data,
+    }, {
+        loading: true,
+    })
+}
+
+export function getUserInfo(data) {   //例子  用户信息查询
+    return request({
+        url: '/user/getUserInfo',
+        method: 'get',
+        params: data,
     })
 }
 
@@ -37,10 +45,20 @@ export function delUser(data) {   //例子  删除用户
     return request({
         url: '/user/delUser',
         method: 'post',
-        data:data,
-    },{
-        message:true,
-        loading:true,
+        data: data,
+    }, {
+        message: true,
+        loading: true,
+    })
+}
+
+export function changePass(data) {   //密码修改
+    return request({
+        url: '/user/changePass',
+        method: 'post',
+        data: data,
+    }, {
+        message: true,
     })
 }
 

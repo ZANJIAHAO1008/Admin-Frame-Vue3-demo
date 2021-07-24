@@ -80,8 +80,8 @@
 <script>
 import {defineComponent, reactive, toRefs, onMounted,shallowRef,provide} from "vue";
 import {getAll, delUser} from "../../api/user";
-import { ElMessageBox } from 'element-plus';
-import Pagination from "../../components/Pagination.vue";
+import {ElMessageBox} from 'element-plus';
+import Pagination from "../../components/Pagination/index.vue";
 export default defineComponent({
   name:"userList",
   components:{
