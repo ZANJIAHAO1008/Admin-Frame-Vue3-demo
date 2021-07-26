@@ -55,7 +55,7 @@
 import {defineComponent, getCurrentInstance, toRefs, reactive, ref, watch, computed, onMounted} from 'vue'
 
 export default defineComponent({
-  name: "table",
+  name: "zan-table",
   setup() {
     const state = reactive({
       currentPage: 5,

@@ -2,7 +2,7 @@
   <div class="login-container">
     <div class="login-body">
       <div class="logo">
-        <img alt="" src="../assets/image/logo1.png">
+        <img alt="" src="../assets/image/logo.png">
       </div>
       <div v-show="loginStatus">
         <el-form ref="loginRef" :model="param" :rules="loginRules" hide-required-asterisk @submit.native.prevent>

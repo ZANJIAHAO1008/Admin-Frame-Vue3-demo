@@ -1,5 +1,5 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
-import {ElLoading} from "element-plus";
+import {ElMessage} from "element-plus";
 import {getToken} from '../util/auth.js';
 import NProgress from 'nprogress';//加载进度条
 import 'nprogress/nprogress.css';
@@ -107,7 +107,7 @@ router.beforeEach((to, from, next) => {
         if (whiteList.includes(to.path)) {  //如果是白名单无须token则直接进入
             next();
         } else {
-            ElLoading.error("无token信息 请登陆")
+            ElMessage.error("无登陆凭证,无法访问,请先登陆!")
             next('/login')
         }
 

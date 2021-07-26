@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="zan-header">
     <div class="collapse-btn" @click="switchCollapse">
       <i v-if="collapse" class="fa fa-indent"></i>
       <i v-else class="fa fa-dedent"></i>
@@ -38,8 +38,9 @@ import {useStore} from 'vuex';
 import {useRouter} from "vue-router";
 import {ElMessage} from 'element-plus'
 import checkPass from "../Setting/checkPass.vue";
+import Cookies from "js-cookie";
 export default defineComponent({
-  name: "header",
+  name: "zan-header",
   components: {
     checkPass
   },
@@ -87,7 +88,7 @@ export default defineComponent({
 
     const handleCommand = (command) => {  //用户下拉菜单
       if (command == "signOut") {
-        localStorage.removeItem("person_name");
+        Cookies.remove("token"); //清空token 1秒后回到登录页
         router.push("/login");
         ElMessage.success("登出成功");
       } else if (command == 'checkPass') {
@@ -110,7 +111,7 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
-.header {
+.zan-header {
   box-sizing: border-box;
   width: 100%;
   height: 70px;

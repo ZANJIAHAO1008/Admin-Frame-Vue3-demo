@@ -55,17 +55,17 @@
 <script>
 import {defineComponent, getCurrentInstance, toRefs, reactive, ref, watch, computed, onMounted} from 'vue'
 export  default defineComponent({
-      name:"form",
-  setup(){
+  name: "zan-form",
+  setup() {
     const ruleRef = ref(null);  //登录ref
-        const state = reactive({
-          ruleForm: {
-            name: '',
-            region: '',
-            date1: '',
-            date2: '',
-            delivery: false,
-            type: [],
+    const state = reactive({
+      ruleForm: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
             resource: '',
             desc: ''
           },
