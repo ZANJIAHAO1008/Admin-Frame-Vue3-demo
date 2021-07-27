@@ -16,7 +16,7 @@
         <img src="../../assets/image/img.jpg"/>
       </div>
       <!-- 用户名下拉菜单 -->
-      <el-dropdown class="user-name" trigger="click" @command="handleCommand">
+      <el-dropdown size="small" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
                         {{ username }}
                         <i class="el-icon-caret-bottom"></i>
@@ -24,12 +24,14 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item divided command="signOut">退出登录</el-dropdown-item>
+            <el-dropdown-item command="baseInfo" divided>基本信息</el-dropdown-item>
             <el-dropdown-item command="checkPass" divided>修改密码</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
     </div>
-    <checkPass v-model:passVisible="passVisible"></checkPass>
+    <check-pass v-model:passVisible="passVisible"></check-pass>
+    <base-info v-model:baseVisible="baseVisible"></base-info>
   </div>
 </template>
 <script>
@@ -37,12 +39,15 @@ import {defineComponent, getCurrentInstance, toRefs, reactive, ref, computed, wa
 import {useStore} from 'vuex';
 import {useRouter} from "vue-router";
 import {ElMessage} from 'element-plus'
-import checkPass from "../Setting/checkPass.vue";
 import Cookies from "js-cookie";
+import checkPass from "../Setting/checkPass.vue";
+import baseInfo from "../Setting/baseInfo.vue";
+
 export default defineComponent({
   name: "zan-header",
   components: {
-    checkPass
+    checkPass,
+    baseInfo
   },
   setup() {
     const store = useStore(); //vuex
@@ -51,6 +56,7 @@ export default defineComponent({
       collapse: computed(() => store.state.collapse),
       username: computed(() => store.state.user.staffName),
       passVisible: false, //修改密码弹框
+      baseVisible: false,//基本信息弹框
     });
 
 
@@ -93,6 +99,9 @@ export default defineComponent({
         ElMessage.success("登出成功");
       } else if (command == 'checkPass') {
         state.passVisible = true;
+      } else if (command == 'baseInfo') {
+        console.log(state.baseVisible, command)
+        state.baseVisible = true;
       }
     };
 

@@ -1,0 +1,257 @@
+<template>
+  <div class="resource">
+    <el-button type="primary" @click="openLog({},'add')">新增资源</el-button>
+    <el-tree
+        :data="resourceList"
+        :expand-on-click-node="false"
+        :props="defaultProps"
+        default-expand-all
+        node-key="resourceId"
+        show-checkbox>
+      <template #default="{ node, data }">
+        <span class="custom-tree-node">
+          <span>{{ node.label }}</span>
+          <span>
+            <el-button icon="el-icon-plus" title="添加子资源" type="text" @click="openLog(data,'add')">添加子资源</el-button>
+            <el-button icon="el-icon-edit" title="编辑" type="text" @click="openLog(data,'edit')">编辑</el-button>
+              <el-button v-if="data.children.length < 1" icon="el-icon-delete" title="删除" type="text"
+                         @click="del(data)">删除</el-button>
+          </span>
+        </span>
+      </template>
+    </el-tree>
+    <el-dialog
+        v-model="visible"
+        :before-close="close"
+        title="资源配置"
+        width="865px">
+      <el-form ref="resourceRef" :model="resourceForm" :rules="resourceRules" class="demo-ruleForm" label-width="74px">
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="名称：" prop="resourceName">
+              <el-input v-model.trim="resourceForm.resourceName"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="路径：" prop="resourceUrl">
+              <el-input v-model.trim="resourceForm.resourceUrl"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="图标：" prop="resourceIcon">
+              <el-input v-model="resourceForm.resourceIcon"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="权重：" prop="resourceOrder">
+              <el-input v-model.number="resourceForm.resourceOrder"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="类型：" prop="resourceType">
+              <el-select v-model="resourceForm.resourceType" placeholder="请选择资源类型">
+                <el-option label="菜单" value="1"></el-option>
+                <el-option label="url" value="2"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="说明：" prop="marks">
+              <el-input
+                  v-model="resourceForm.marks"
+                  :rows="2"
+                  placeholder="请输入说明"
+                  type="textarea">
+              </el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+
+      </el-form>
+      <template #footer>
+    <span class="dialog-footer">
+      <el-button @click="close">取 消</el-button>
+      <el-button type="primary" @click="ok">确 定</el-button>
+    </span>
+      </template>
+    </el-dialog>
+  </div>
+</template>
+<script>
+import {defineComponent, reactive, toRefs, onMounted, shallowRef, provide, ref} from "vue";
+import {getAll, saveResource, editResource, delResource} from "../../api/resource.js";
+import {ElMessageBox} from 'element-plus';
+
+export default defineComponent({
+  name: "resource",
+  setup() {
+    const resourceRef = ref(null);  //资源ref
+    const state = reactive({
+      resourceList: [],
+      visible: false,
+      defaultProps: {  //tree 默认配置项
+        children: 'children',
+        label: 'resourceName'
+      },
+      resourceForm: {
+        resourceName: "",
+        resourceUrl: "",
+        resourceType: "",
+        resourceIcon: "",
+        resourceOrder: "",
+        marks: ""
+      },
+      resourceRules: {
+        resourceName: [
+          {required: true, message: '请输入资源名称', trigger: 'blur'},
+        ],
+        resourceUrl: [
+          {required: true, message: '请输入资源路径', trigger: 'blur'},
+        ],
+        resourceOrder: [
+          {required: true, message: '请输入权重', trigger: 'blur'},
+        ],
+      },
+      type: "",
+    });
+
+    onMounted(() => {
+      getInfo();
+    })
+
+    const getInfo = () => {
+      //查询列表
+      getAll().then(res => {
+        state.resourceList = res?.data || [];
+      })
+    }
+
+    const ok = () => {
+      const item = {
+        "add": save,
+        "edit": edit
+      }
+      item[state.type]()
+    }
+
+    const save = () => {
+      //保存
+      resourceRef.value.validate(vaild => {
+        if (vaild) {
+          const dataWare = {
+            resourceName: state.resourceForm.resourceName,
+            resourceUrl: state.resourceForm.resourceUrl,
+            resourceType: state.resourceForm.resourceType,
+            resourceIcon: state.resourceForm.resourceIcon,
+            resourceOrder: state.resourceForm.resourceOrder,
+            marks: state.resourceForm.marks,
+            parentId: state.resourceForm.parentId ?? 0,
+          };
+          saveResource(
+              dataWare
+          ).then(res => {
+            close();
+            getInfo();
+          })
+        }
+      })
+    }
+
+    const edit = () => { //编辑
+      resourceRef.value.validate(vaild => {
+        if (vaild) {
+          const dataWare = {
+            resourceName: state.resourceForm.resourceName,
+            resourceUrl: state.resourceForm.resourceUrl,
+            resourceType: state.resourceForm.resourceType,
+            resourceIcon: state.resourceForm.resourceIcon,
+            resourceOrder: state.resourceForm.resourceOrder,
+            marks: state.resourceForm.marks,
+            resourceId: state.resourceForm.resourceId,
+          };
+          editResource(
+              dataWare
+          ).then(res => {
+            close();
+            getInfo();
+          })
+        }
+      })
+    }
+
+    const del = (data) => {
+      //删除
+      ElMessageBox.confirm('此操作将永久删除该资源, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+          .then(() => {
+            delResource({
+              resourceId: data.resourceId
+            }).then(res => {
+              getInfo();
+            })
+          })
+          .catch(() => {
+
+          });
+    }
+
+    const close = () => {
+      //关闭
+      resourceRef.value.resetFields();
+      state.visible = false;
+    }
+
+    const openLog = (data, type) => {
+      //保存 修改
+      if (type) state.type = type;
+      if (type === 'add') {
+        state.resourceForm.parentId = data.resourceId;
+      } else if (type === 'edit') {
+        state.resourceForm.resourceName = data.resourceName;
+        state.resourceForm.resourceUrl = data.resourceUrl;
+        state.resourceForm.resourceType = data.resourceType;
+        state.resourceForm.resourceIcon = data.resourceIcon;
+        state.resourceForm.resourceOrder = data.resourceOrder;
+        state.resourceForm.marks = data.marks;
+        state.resourceForm.resourceId = data.resourceId;
+      }
+      state.visible = true;
+      // state.resourceForm = Object.assign({...data},{});
+    }
+
+
+    return {
+      ...toRefs(state),
+      save,
+      edit,
+      del,
+      ok,
+      close,
+      openLog,
+      resourceRef,
+    }
+  }
+})
+</script>
+<style lang="less" scoped>
+.resource {
+  .custom-tree-node {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding-right: 8px;
+  }
+}
+</style>

@@ -88,6 +88,11 @@ export default defineComponent({
           title: "用户列表",
         },
         {
+          icon: "fa fa-home",
+          index: "resource",
+          title: "资源管理",
+        },
+        {
           icon: "fa fa-bar-chart",
           index: "6",
           title: "数据管理",
