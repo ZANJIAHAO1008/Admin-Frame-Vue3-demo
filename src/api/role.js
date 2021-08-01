@@ -41,3 +41,19 @@ export function delRole(data) {   // 角色删除
     })
 }
 
+export function roleRelation(data) {   // 角色关联用户
+    return request({
+        url: 'role/relationUser',
+        method: 'post',
+        data: data,
+    })
+}
+
+export function getUserRole(data) {   // 角色关联用户
+    return request({
+        url: '/role/getUserRole',
+        method: 'get',
+        params: data,
+    })
+}
+

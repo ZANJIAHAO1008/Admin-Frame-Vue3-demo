@@ -60,4 +60,13 @@ export function changePass(data) {   //密码修改
     })
 }
 
+export function modifyBaseInfo(data) {   //用户信息修改
+    return request({
+        url: '/user/modifyBaseInfo',
+        method: 'post',
+        data: data,
+    }, {
+        message: true,
+    })
+}
 

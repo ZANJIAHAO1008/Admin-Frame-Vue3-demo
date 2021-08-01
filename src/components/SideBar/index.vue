@@ -83,19 +83,26 @@ export default defineComponent({
           title: "个人中心",
         },
         {
-          icon: "fa fa-home",
-          index: "userList",
-          title: "用户列表",
-        },
-        {
-          icon: "fa fa-home",
-          index: "resource",
-          title: "资源管理",
-        },
-        {
-          icon: "fa fa-home",
-          index: "role",
-          title: "角色管理",
+          icon: "fa fa-bar-chart",
+          index: "5",
+          title: "系统管理",
+          children: [
+            {
+              icon: "fa fa-home",
+              index: "user",
+              title: "用户管理",
+            },
+            {
+              icon: "fa fa-home",
+              index: "role",
+              title: "角色管理",
+            },
+            {
+              icon: "fa fa-home",
+              index: "resource",
+              title: "资源管理",
+            },
+          ],
         },
         {
           icon: "fa fa-bar-chart",

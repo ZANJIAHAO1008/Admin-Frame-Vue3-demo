@@ -71,7 +71,6 @@ import {useRouter} from 'vue-router'
 import {login, register, getUserInfo} from '../api/user.js'
 import Cookies from "js-cookie";
 import {useStore} from "vuex";
-
 export default defineComponent({
   setup() {
     const store = useStore(); //vuex仓库
@@ -194,8 +193,8 @@ export default defineComponent({
   width: 100%;
   height: 100vh;
   background-size: 100% 100%;
-  //background: #F7F7F7;
-  background-image: url(../assets/image/bg.jpg);
+  background: #F7F7F7;
+  //background-image: url(../assets/image/bg.jpg);
 
   .login-body {
     position: absolute;

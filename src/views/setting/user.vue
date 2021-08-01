@@ -11,13 +11,13 @@
               placeholder="请输入姓名"
           ></el-input>
         </el-form-item>
-        <el-form-item label="用户工号：">
+        <el-form-item label="用户ID：">
           <el-input
               size="medium"
               clearable
               @keyup.enter="getInfo"
               v-model.trim="queryParams.staffId"
-              placeholder="请输入工号/ID"
+              placeholder="请输入ID"
           ></el-input>
         </el-form-item>
         <el-form-item>
@@ -42,7 +42,7 @@
         </el-table-column>
         <el-table-column
             prop="username"
-            label="账号名称"
+            label="用户名"
         >
         </el-table-column>
         <el-table-column
@@ -68,7 +68,7 @@
            >
           <template #default="scope">
             <el-space spacer="|" style="color:#dedede">
-              <el-button type="text">授权</el-button>
+              <el-button type="text" @click="baseInfoEdit(scope.row)">编辑</el-button>
               <el-button type="text"
                          @click="deleteUser(scope.row)">删除
               </el-button>
@@ -77,30 +77,35 @@
         </el-table-column>
       </el-table>
       <component :is="components.pagination" class="zan-pagination" @change="getInfo"></component>
-<!--      <Pagination/>-->
     </div>
+    <base-info ref="baseInfoRef" v-model:baseVisible="baseVisible" @reFresh="getInfo"></base-info>
   </div>
 </template>
 <script>
-import {defineComponent, reactive, toRefs, onMounted,shallowRef,provide} from "vue";
-import {getAll, delUser} from "../../api/user";
+import {defineComponent, ref, reactive, toRefs, onMounted, shallowRef, provide} from "vue";
+import {getAll, delUser} from "../../api/user.js";
 import {ElMessageBox} from 'element-plus';
+import baseInfo from "../../components/Setting/baseInfo.vue";
 import Pagination from "../../components/Pagination/index.vue";
+
 export default defineComponent({
-  name:"userList",
-  components:{
-    Pagination
+  name: "user",
+  components: {
+    Pagination,
+    baseInfo
   },
   setup() {
+    const baseInfoRef = ref('null');
     const state = reactive({
       userList: [], //存储用户信息
+      baseVisible: false,//基本信息弹框
       queryParams: {
         staffName: "",
         staffId: "",
       },
-      pagination:{
-        total:1,
-        page:1
+      pagination: {
+        total: 1,
+        page: 1
       }
     });
 
@@ -113,25 +118,30 @@ export default defineComponent({
     const getInfo = (val) => {  //查询
       let dataWare = {
         ...state.queryParams,
-        pageSize:val&&val.pageSize || 10,
-        page:val&&val.page || 1
+        pageSize: val && val.pageSize || 10,
+        page: val && val.page || 1
       };
       getAll(dataWare).then((res) => {
         state.userList = res?.data?.list || []; //表格数据
-        state.pagination.total =  res?.data?.total || 1; //总条数
-        state.pagination.page =  res?.data?.page || 1; //当前页
+        state.pagination.total = res?.data?.total || 1; //总条数
+        state.pagination.page = res?.data?.page || 1; //当前页
       });
     };
 
+    const baseInfoEdit = (row) => {
+      //打开编辑信息弹框
+      baseInfoRef.value.openBaseInfo(row);
+    }
 
-    const deleteUser = (row)=>{  //删除用户
+
+    const deleteUser = (row) => {  //删除用户
       ElMessageBox.confirm('此操作将注销该用户, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
         delUser({
-          id:row.id
+          id: row.id
         }).then(() => {
           getInfo();
         });
@@ -148,8 +158,10 @@ export default defineComponent({
     return {
       ...toRefs(state),
       components,
+      baseInfoRef,
       getInfo,
-      deleteUser
+      deleteUser,
+      baseInfoEdit
     };
   },
 });

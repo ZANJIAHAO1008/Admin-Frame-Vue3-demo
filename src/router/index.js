@@ -49,18 +49,11 @@ const constantRouterMap = [
                 component: () => import("../views/homePage.vue")
             },
             {
-                path: "/userList",
+                path: "/user",
                 meta: {
-                    title: '用户列表'
+                    title: '用户管理'
                 },
-                component: () => import("../views/user/userList.vue")
-            },
-            {
-                path: "/resource",
-                meta: {
-                    title: '资源管理'
-                },
-                component: () => import("../views/setting/resource.vue")
+                component: () => import("../views/setting/user.vue")
             },
             {
                 path: "/role",
@@ -69,6 +62,14 @@ const constantRouterMap = [
                 },
                 component: () => import("../views/setting/role.vue")
             },
+            {
+                path: "/resource",
+                meta: {
+                    title: '资源管理'
+                },
+                component: () => import("../views/setting/resource.vue")
+            },
+
             {
                 path: "/table",
                 meta: {

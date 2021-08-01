@@ -31,7 +31,7 @@
       </el-dropdown>
     </div>
     <check-pass v-model:passVisible="passVisible"></check-pass>
-    <base-info v-model:baseVisible="baseVisible"></base-info>
+    <base-info ref="baseInfoRef" v-model:baseVisible="baseVisible"></base-info>
   </div>
 </template>
 <script>
@@ -49,9 +49,10 @@ export default defineComponent({
     checkPass,
     baseInfo
   },
-  setup() {
+  setup(context, props) {
     const store = useStore(); //vuex
     const router = useRouter(); //路由
+    const baseInfoRef = ref('null');
     const state = reactive({
       collapse: computed(() => store.state.collapse),
       username: computed(() => store.state.user.staffName),
@@ -100,8 +101,7 @@ export default defineComponent({
       } else if (command == 'checkPass') {
         state.passVisible = true;
       } else if (command == 'baseInfo') {
-        console.log(state.baseVisible, command)
-        state.baseVisible = true;
+        baseInfoRef.value.openBaseInfo(store.state.user);
       }
     };
 
@@ -111,6 +111,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
+      baseInfoRef,
       switchCollapse,
       handleCommand,
       toGetMessage,

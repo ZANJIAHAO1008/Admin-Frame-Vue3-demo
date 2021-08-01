@@ -1,7 +1,8 @@
 <template>
   <div class="resource">
     <div class="zan-nav">
-      <el-form :inline="true" :model="queryParams" class="demo-form-inline" label-position="right" label-width="84px">
+      <el-form ref="baseInfoRef" :inline="true" :model="queryParams" class="demo-form-inline" label-position="right"
+               label-width="84px">
         <el-form-item label="资源名称：">
           <el-input
               v-model.trim="queryParams.resourceName"
