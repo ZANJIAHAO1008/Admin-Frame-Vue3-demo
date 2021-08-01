@@ -194,8 +194,9 @@ export default defineComponent({
   width: 100%;
   height: 100vh;
   background-size: 100% 100%;
-  background: #F7F7F7;
-  //background-image: url(../assets/image/background.jpg);
+  //background: #F7F7F7;
+  background-image: url(../assets/image/bg.jpg);
+
   .login-body {
     position: absolute;
     left: 50%;

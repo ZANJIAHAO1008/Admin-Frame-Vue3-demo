@@ -93,6 +93,11 @@ export default defineComponent({
           title: "资源管理",
         },
         {
+          icon: "fa fa-home",
+          index: "role",
+          title: "角色管理",
+        },
+        {
           icon: "fa fa-bar-chart",
           index: "6",
           title: "数据管理",

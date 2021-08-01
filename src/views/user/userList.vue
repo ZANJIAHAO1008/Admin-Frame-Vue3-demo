@@ -4,6 +4,7 @@
       <el-form label-position="right" label-width="84px" :inline="true" :model="queryParams" class="demo-form-inline">
         <el-form-item  label="用户姓名：" >
           <el-input
+              size="medium"
               clearable
               @keyup.enter="getInfo"
               v-model.trim="queryParams.staffName"
@@ -12,6 +13,7 @@
         </el-form-item>
         <el-form-item label="用户工号：">
           <el-input
+              size="medium"
               clearable
               @keyup.enter="getInfo"
               v-model.trim="queryParams.staffId"
@@ -19,7 +21,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary"  icon="el-icon-search" @click="getInfo">查 询</el-button>
+          <el-button icon="el-icon-search" size="small" type="primary" @click="getInfo">查 询</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -65,10 +67,12 @@
             label="操作"
            >
           <template #default="scope">
-            <el-button   type="text">授权</el-button>
-            <el-button  type="text" style="color: red;"
-                       @click="deleteUser(scope.row)">删除
-            </el-button>
+            <el-space spacer="|" style="color:#dedede">
+              <el-button type="text">授权</el-button>
+              <el-button type="text"
+                         @click="deleteUser(scope.row)">删除
+              </el-button>
+            </el-space>
           </template>
         </el-table-column>
       </el-table>

@@ -1,25 +1,49 @@
 <template>
   <div class="resource">
-    <el-button type="primary" @click="openLog({},'add')">新增资源</el-button>
-    <el-tree
-        :data="resourceList"
-        :expand-on-click-node="false"
-        :props="defaultProps"
-        default-expand-all
-        node-key="resourceId"
-        show-checkbox>
-      <template #default="{ node, data }">
+    <div class="zan-nav">
+      <el-form :inline="true" :model="queryParams" class="demo-form-inline" label-position="right" label-width="84px">
+        <el-form-item label="资源名称：">
+          <el-input
+              v-model.trim="queryParams.resourceName"
+              clearable
+              placeholder="请输入资源名称"
+              size="medium"
+              @keyup.enter="getInfo"
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button icon="el-icon-search" size="small" type="primary" @click="getInfo">查 询</el-button>
+          <el-button plain size="small" @click="openLog({},'add')">新增资源</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <div class="zan-table">
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-tree
+              :data="resourceList"
+              :expand-on-click-node="false"
+              :props="defaultProps"
+              default-expand-all
+              node-key="resourceId"
+              show-checkbox>
+            <template #default="{ node, data }">
         <span class="custom-tree-node">
           <span>{{ node.label }}</span>
           <span>
-            <el-button icon="el-icon-plus" title="添加子资源" type="text" @click="openLog(data,'add')">添加子资源</el-button>
-            <el-button icon="el-icon-edit" title="编辑" type="text" @click="openLog(data,'edit')">编辑</el-button>
-              <el-button v-if="data.children.length < 1" icon="el-icon-delete" title="删除" type="text"
+            <el-space spacer="|" style="color:#dedede">
+                          <el-button title="添加子资源" type="text" @click="openLog(data,'add')">添加子资源</el-button>
+            <el-button title="编辑" type="text" @click="openLog(data,'edit')">编辑</el-button>
+              <el-button title="删除" type="text"
                          @click="del(data)">删除</el-button>
+            </el-space>
           </span>
         </span>
-      </template>
-    </el-tree>
+            </template>
+          </el-tree>
+        </el-col>
+      </el-row>
+    </div>
     <el-dialog
         v-model="visible"
         :before-close="close"
@@ -46,7 +70,8 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="权重：" prop="resourceOrder">
-              <el-input v-model.number="resourceForm.resourceOrder"></el-input>
+              <el-input-number v-model="resourceForm.resourceOrder" :max="999" :min="1"></el-input-number>
+
             </el-form-item>
           </el-col>
         </el-row>
@@ -100,13 +125,17 @@ export default defineComponent({
         children: 'children',
         label: 'resourceName'
       },
+      queryParams: {
+        resourceName: ""
+      },
       resourceForm: {
         resourceName: "",
         resourceUrl: "",
         resourceType: "",
         resourceIcon: "",
         resourceOrder: "",
-        marks: ""
+        marks: "",
+        resourceId: ""
       },
       resourceRules: {
         resourceName: [
@@ -128,7 +157,9 @@ export default defineComponent({
 
     const getInfo = () => {
       //查询列表
-      getAll().then(res => {
+      getAll({
+        resourceName: state.queryParams.resourceName
+      }).then(res => {
         state.resourceList = res?.data || [];
       })
     }
@@ -208,6 +239,15 @@ export default defineComponent({
     const close = () => {
       //关闭
       resourceRef.value.resetFields();
+      state.resourceForm = {
+        resourceName: "",
+        resourceUrl: "",
+        resourceType: "",
+        resourceIcon: "",
+        resourceOrder: "",
+        marks: "",
+        resourceId: ""
+      };
       state.visible = false;
     }
 
@@ -215,7 +255,7 @@ export default defineComponent({
       //保存 修改
       if (type) state.type = type;
       if (type === 'add') {
-        state.resourceForm.parentId = data.resourceId;
+        state.resourceForm.parentId = data.resourceId ? data.resourceId : 0;
       } else if (type === 'edit') {
         state.resourceForm.resourceName = data.resourceName;
         state.resourceForm.resourceUrl = data.resourceUrl;
@@ -238,6 +278,7 @@ export default defineComponent({
       ok,
       close,
       openLog,
+      getInfo,
       resourceRef,
     }
   }

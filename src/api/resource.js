@@ -2,11 +2,9 @@ import request from './axios';
 
 export function getAll(data) {   // 资源列表查询
     return request({
-        url: 'resource/getAll',
+        url: 'resource/getResource',
         method: 'get',
         params: data,
-    }, {
-        loading: true,
     })
 }
 
@@ -40,6 +38,25 @@ export function delResource(data) {   // 资源删除
     }, {
         loading: true,
         message: true,
+    })
+}
+
+export function relationResource(data) {   // 角色资源关联
+    return request({
+        url: 'resource/relation',
+        method: 'post',
+        data: data,
+    }, {
+        loading: true,
+        message: true,
+    })
+}
+
+export function getRoleRelation(data) {   // 角色资源关联查询
+    return request({
+        url: 'resource/getRoleRelation',
+        method: 'get',
+        params: data,
     })
 }
 

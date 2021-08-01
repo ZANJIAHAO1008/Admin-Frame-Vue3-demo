@@ -28,8 +28,6 @@ export function getAll(data) {   //例子  用户列表查询
         url: '/user/getAll',
         method: 'get',
         params: data,
-    }, {
-        loading: true,
     })
 }
 

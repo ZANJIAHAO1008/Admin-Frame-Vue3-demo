@@ -63,6 +63,13 @@ const constantRouterMap = [
                 component: () => import("../views/setting/resource.vue")
             },
             {
+                path: "/role",
+                meta: {
+                    title: '角色管理'
+                },
+                component: () => import("../views/setting/role.vue")
+            },
+            {
                 path: "/table",
                 meta: {
                     title: '基础表格'
