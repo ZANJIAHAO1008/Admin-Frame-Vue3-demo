@@ -124,8 +124,8 @@ export default defineComponent({
 .zan-header {
   box-sizing: border-box;
   width: 100%;
-  height: 70px;
-  font-size: 22px;
+  height: 64px;
+  font-size: 18px;
   color: #616161;
   background: #FFF;
 
@@ -133,7 +133,7 @@ export default defineComponent({
     float: left;
     padding: 0px 15px 0 30px;
     cursor: pointer;
-    line-height: 70px;
+    line-height: 64px;
   }
 
 
@@ -145,7 +145,7 @@ export default defineComponent({
   .collapse-right {
     float: right;
     padding-right: 65px;
-    height: 70px;
+    height: 64px;
     display: flex;
     align-items: center;
 

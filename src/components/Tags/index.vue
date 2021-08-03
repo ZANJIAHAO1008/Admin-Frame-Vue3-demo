@@ -4,6 +4,7 @@
         :key="tag"
         v-for="(tag,index) in tagsList"
         closable
+        size="medium"
         :effect="path===tag.path?'dark':'plain'"
         @close="aClosingTag(tag,index)"
         @click="triggerTag(tag,'go')"
@@ -89,20 +90,17 @@ export default defineComponent({
 </script>
 <style lang="less">
 .tags {
-  margin: 8px;
-  padding: 6px;
+  padding: 6px 0px;
+  margin: 0px 12px;
   box-sizing: border-box;
-  background: #ffffff;
-  border-bottom: 1px solid #d8dce5;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
   .el-tag {
     cursor: pointer;
     margin-right: 8px;
-    height: 30px;
-    padding: 0px 13px 0 9px;
-    line-height: 28px;
-    border-radius: 0;
+    //height: 30px;
+    //padding: 0px 13px 0 9px;
+    //line-height: 28px;
+    //border-radius: 0;
   }
 }
 </style>

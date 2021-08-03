@@ -5,7 +5,7 @@
         <side-bar></side-bar>
       </el-aside>
       <el-container>
-        <el-header height="70px">
+        <el-header height="64px">
           <Header></Header>
         </el-header>
         <el-main>
@@ -72,15 +72,16 @@ export default defineComponent({
     padding: 0;
   }
   .el-main {
-    background-color: #f0f0f0;
+    background: #f5f7f9;
+
     .content {
       padding: 24px;
       box-sizing: border-box;
-      margin: 8px 8px 0 8px;
+      margin: 0px 8px 0 8px;
       background: #ffffff;
       overflow-x: hidden;
       overflow-y: auto;
-      height: calc(100vh - 138px);
+      height: calc(100vh - 115px);
       color: #5e6d82;
       box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     }

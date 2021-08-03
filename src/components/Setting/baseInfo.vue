@@ -14,7 +14,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="10">
-          <el-form-item label="用户名：">
+          <el-form-item label="用户名：" prop="username">
             <el-input v-model="baseInfo.username"></el-input>
           </el-form-item>
         </el-col>
@@ -89,8 +89,12 @@
       </el-row>
       <el-row>
         <el-col :span="20">
-          <el-button @click="close">取消</el-button>
-          <el-button type="primary" @click="relation">确定</el-button>
+          <div class="baseInfo_footer">
+            <el-form-item>
+              <el-button @click="close">取消</el-button>
+              <el-button type="primary" @click="relation">确定</el-button>
+            </el-form-item>
+          </div>
         </el-col>
       </el-row>
     </el-form>
@@ -111,6 +115,7 @@ export default defineComponent({
   props: {
     baseVisible: Boolean
   },
+  emits: ['baseVisible', 'refresh'],
   setup(props, context) {
     const store = useStore(); //vuex
     const router = useRouter(); //路由
@@ -129,6 +134,7 @@ export default defineComponent({
         image: ""
       },
       baseInfoRules: {
+        username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
         jurisdiction: [
           {required: true, message: '请至少选择一个角色', trigger: 'change'}
         ],
@@ -165,6 +171,9 @@ export default defineComponent({
 
     const saveBaseInfo = () => {
       //保存用户信息
+      if (state.baseInfo.resourceList) { //如果有资源列表  传参时 删除资源列表
+        delete state.baseInfo.resourceList;
+      }
       modifyBaseInfo(state.baseInfo).then(res => {
         if (state.baseInfo.staffId == store.state.user.staffId) {
           //检测是否修改登陆账号信息
@@ -174,10 +183,11 @@ export default defineComponent({
           });
           setTimeout(() => {
             router.push({path: '/login'});
+            context.emit('reFresh', false);
             Cookies.remove("token");
           }, 3000)
         } else {
-          context.emit('reFresh');
+          context.emit('reFresh', true);
         }
         close();
       })
@@ -211,3 +221,9 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="less" scoped>
+.baseInfo_footer {
+  text-align: right;
+
+}
+</style>

@@ -69,20 +69,12 @@ const constantRouterMap = [
                 },
                 component: () => import("../views/setting/resource.vue")
             },
-
             {
-                path: "/table",
+                path: "/dictionary",
                 meta: {
-                    title: '基础表格'
+                    title: '字典管理'
                 },
-                component: () => import("../views/Table.vue")
-            },
-            {
-                path: "/form",
-                meta: {
-                    title: '基础表单'
-                },
-                component: () => import("../views/Form.vue")
+                component: () => import("../views/setting/dictionary.vue")
             },
             {
                 path: "/messageCenter",
@@ -91,6 +83,21 @@ const constantRouterMap = [
                 },
                 component: () => import("../views/messageCenter.vue")
             },
+            //
+            // {
+            //     path: "/table",
+            //     meta: {
+            //         title: '基础表格'
+            //     },
+            //     component: () => import("../views/Table.vue")
+            // },
+            // {
+            //     path: "/form",
+            //     meta: {
+            //         title: '基础表单'
+            //     },
+            //     component: () => import("../views/Form.vue")
+            // },
         ]
     }
 ]

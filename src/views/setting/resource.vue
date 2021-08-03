@@ -27,7 +27,7 @@
               :props="defaultProps"
               default-expand-all
               node-key="resourceId"
-              show-checkbox>
+              >
             <template #default="{ node, data }">
         <span class="custom-tree-node">
           <span>{{ node.label }}</span>

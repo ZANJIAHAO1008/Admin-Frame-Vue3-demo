@@ -78,7 +78,7 @@
       </el-table>
       <component :is="components.pagination" class="zan-pagination" @change="getInfo"></component>
     </div>
-    <base-info ref="baseInfoRef" v-model:baseVisible="baseVisible" @reFresh="getInfo"></base-info>
+    <base-info ref="baseInfoRef" v-model:baseVisible="baseVisible" @reFresh="reFresh"></base-info>
   </div>
 </template>
 <script>
@@ -94,6 +94,7 @@ export default defineComponent({
     Pagination,
     baseInfo
   },
+  emits: [],
   setup() {
     const baseInfoRef = ref('null');
     const state = reactive({
@@ -128,6 +129,12 @@ export default defineComponent({
       });
     };
 
+    const reFresh = (val) => {
+      //刷新
+      if (val) getInfo();
+    }
+
+
     const baseInfoEdit = (row) => {
       //打开编辑信息弹框
       baseInfoRef.value.openBaseInfo(row);
@@ -161,7 +168,8 @@ export default defineComponent({
       baseInfoRef,
       getInfo,
       deleteUser,
-      baseInfoEdit
+      baseInfoEdit,
+      reFresh
     };
   },
 });
