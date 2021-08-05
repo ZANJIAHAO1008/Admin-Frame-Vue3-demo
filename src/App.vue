@@ -2,10 +2,14 @@
   <router-view />
 </template>
 <script>
+import * as echarts from 'echarts'
+import {provide} from 'vue'
+
 export default {
   name: 'App',
-  components: {
-  }
+  setup() {
+    provide('echarts', echarts) //全局穿透Echarts
+  },
 }
 </script>
 <style lang="less">

@@ -12,8 +12,13 @@
           <Tags></Tags>
           <div class="content">
             <router-view v-slot="{ Component }">
-              <transition name="el-zoom-in-top" mode="out-in">
-                <component :is="Component"></component>
+              <transition appear
+                          appear-active-class="animate__animated animate__slideInDown"
+                          enter-active-class="animate__animated animate__fadeIn"
+                          name="fade"
+              >
+                <!--进入 enter-active-class   移出 leave-active-class  初始 appear-active-class-->
+                <component :is="Component" v-if="Component"></component>
               </transition>
             </router-view>
             <el-backtop target=".content"></el-backtop>
@@ -59,6 +64,8 @@ export default defineComponent({
     return {
       ...toRefs(state),
     };
+
+
   },
 });
 </script>
@@ -67,10 +74,12 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   overflow: hidden;
+
   .el-header,
   .el-main {
     padding: 0;
   }
+
   .el-main {
     background: #f5f7f9;
 
@@ -86,6 +95,7 @@ export default defineComponent({
       box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     }
   }
+
   .el-affix--fixed,
   .el-overlay {
     right: 8px !important;

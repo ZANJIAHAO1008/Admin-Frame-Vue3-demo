@@ -7,7 +7,9 @@
     "build": "vite build"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "axios": "^0.21.1",
+    "echarts": "^5.1.2",
     "element-plus": "^1.0.2-beta.40",
     "js-cookie": "^2.2.1",
     "nprogress": "^0.2.0",

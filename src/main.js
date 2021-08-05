@@ -8,10 +8,12 @@ import './assets/css/font-awesome.min.css'
 import store from './store'
 import filters from "./filters";
 import * as _public from "./util/utils";
+import animated from 'animate.css'
 const app = createApp(App)
 app.config.globalProperties._public = _public;
 app.config.globalProperties.$filters = filters;
 app.use(ElementPlus)
+app.use(animated)
 app.use(router)
 app.use(store)
 app.mount('#app')

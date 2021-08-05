@@ -44,7 +44,7 @@ const constantRouterMap = [
             {
                 path: "/homePage",
                 meta: {
-                    title: '个人中心'
+                    title: '首页'
                 },
                 component: () => import("../views/homePage.vue")
             },
