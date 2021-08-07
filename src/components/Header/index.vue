@@ -8,6 +8,23 @@
       <el-tooltip class="item" effect="dark" content="全屏" placement="bottom">
         <i class="fa fa-arrows-alt" @click="requestFullScreen('body')"></i>
       </el-tooltip>
+      <!--      <el-tooltip class="item" effect="dark" content="国际化" placement="bottom">-->
+      <!--        <i class="fa fa-language" @click="changeI18n"></i>-->
+      <!--      </el-tooltip>-->
+      <el-dropdown @command="changeI18n">
+      <span class="el-dropdown-link">
+        <i class="fa fa-language" style="font-size: 18px;"></i>
+      </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :command="locale"
+                              :style="{
+           color: $i18n.locale == locale ? 'rgb(64, 158, 255)': ''
+            }">{{ $filters.langFilter(locale) }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
       <el-tooltip class="item" effect="dark" content="消息中心" placement="bottom">
         <i class="fa fa-bell-o" @click="toGetMessage"></i>
       </el-tooltip>
@@ -42,7 +59,7 @@ import {ElMessage} from 'element-plus'
 import Cookies from "js-cookie";
 import checkPass from "../Setting/checkPass.vue";
 import baseInfo from "../Setting/baseInfo.vue";
-
+import {useI18n} from 'vue-i18n'
 export default defineComponent({
   name: "zan-header",
   components: {
@@ -50,6 +67,8 @@ export default defineComponent({
     baseInfo
   },
   setup(context, props) {
+    let {proxy} = getCurrentInstance(); // vue原型
+    const {t} = useI18n();
     const store = useStore(); //vuex
     const router = useRouter(); //路由
     const baseInfoRef = ref('null');
@@ -59,6 +78,7 @@ export default defineComponent({
       passVisible: false, //修改密码弹框
       baseVisible: false,//基本信息弹框
     });
+
 
 
     const requestFullScreen = (element) => {  //进入全屏 退出全屏
@@ -109,12 +129,25 @@ export default defineComponent({
       router.push("/messageCenter");
     }
 
+    const changeI18n = (type) => {
+      //切换中英文
+      if (type == Cookies.get('lang')) {
+        //如果已经是这个语言则提醒
+        ElMessage.warning(`${t('message.public.existence')}`)
+        return false;
+      }
+      proxy.$i18n.locale = type;
+      Cookies.set("lang", type);
+      ElMessage.success(`${t('message.public.editLang')}`);
+    }
+
     return {
       ...toRefs(state),
       baseInfoRef,
       switchCollapse,
       handleCommand,
       toGetMessage,
+      changeI18n,
       requestFullScreen,
     }
   }

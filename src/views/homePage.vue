@@ -12,16 +12,14 @@ export default defineComponent({
     let echarts = inject("echarts");//引入echarts
 
     onMounted(() => {
-      window.onresize = function () {//自适应大小
-        statistics();
-      };
-
+      // window.onresize = function () {//自适应大小
+      //   statistics();
+      // };
       statistics();
     })
 
     const statistics = () => {
       //统计
-      console.log('重新渲染Echarts')
       let myChart = echarts.init(document.getElementById("countCharts"));
       // 绘制图表
       let option = {

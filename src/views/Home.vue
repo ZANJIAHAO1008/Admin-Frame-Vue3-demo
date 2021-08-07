@@ -13,7 +13,7 @@
           <div class="content">
             <router-view v-slot="{ Component }">
               <transition appear
-                          appear-active-class="animate__animated animate__slideInDown"
+                          appear-active-class="animate__animated animate__pulse"
                           enter-active-class="animate__animated animate__fadeIn"
                           name="fade"
               >
