@@ -30,8 +30,9 @@
       </el-tooltip>
       <!-- 用户头像 -->
       <div class="user-avatar">
-        <img src="../../assets/image/img.jpg"/>
+        <el-avatar icon="el-icon-user-solid"></el-avatar>
       </div>
+
       <!-- 用户名下拉菜单 -->
       <el-dropdown size="small" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
@@ -189,7 +190,7 @@ export default defineComponent({
   }
 
   .user-avatar {
-    margin: 0 20px 0 5px;
+    margin: 0 10px 0 5px;
   }
 
   img {

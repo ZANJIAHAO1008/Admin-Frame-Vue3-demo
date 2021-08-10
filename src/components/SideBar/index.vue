@@ -1,10 +1,16 @@
 <template>
-  <div class="sidebar">
+  <div :style="{
+    width:collapse?'64px':'200px'
+  }" class="sidebar">
+    <div class="zan-sidebar-nav">
+      <img alt="" src="../../assets/image/LG.png" style="width: 40px;height: 40px;">
+      <span v-if="!collapse">Zan Admin</span>
+    </div>
     <el-menu
         :default-active="onRoutes"
         class="sidebar-el-menu"
         :collapse="collapse"
-        collapse-transition
+        :collapse-transition="true"
         unique-opened
         background-color="#001529"
         active-text-color="#ffffff"
@@ -61,8 +67,8 @@
   </div>
 </template>
 <script>
-import { defineComponent, toRefs, reactive, ref, computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import {defineComponent, toRefs, reactive, ref, computed, watch} from "vue";
+import {useRoute, useRouter} from "vue-router";
 import { useStore } from "vuex";
 
 export default defineComponent({
@@ -75,28 +81,35 @@ export default defineComponent({
     const state = reactive({
       menuItem: computed(() => store.state.user.resourceList), //查询菜单栏
       onRoutes: computed(() => route.path),
-      collapse: computed(() => store.state.collapse),
+      collapse: computed(() => {
+        return store.state.collapse
+      }),
     });
-
     return {
       ...toRefs(state),
     };
   },
 });
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .sidebar {
   height: 100%;
+  box-sizing: border-box;
+  transition: width .3s ease-in-out;
 
-  .zan-title {
-    display: block;
-    height: 71px;
-    line-height: 71px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    background: #303133;
-    color: hsla(0, 0%, 100%, .7);
+  .zan-sidebar-nav {
+    box-sizing: border-box;
+    padding: 10px 10px;
+    background-color: rgb(0, 21, 41);
+    display: flex;
+    align-items: center;
+
+    span {
+      padding-left: 12px;
+      color: #dedede;
+      font-size: 23px;
+      white-space: nowrap;
+    }
   }
 
   .fa {
@@ -105,7 +118,7 @@ export default defineComponent({
     width: 24px;
     text-align: center;
     font-size: 18px;
-    color: #c0c4cc;
+    //color: #c0c4cc;
   }
 }
 </style>

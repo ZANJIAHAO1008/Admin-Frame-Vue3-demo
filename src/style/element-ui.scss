@@ -51,7 +51,15 @@
 //menu
 
 .el-menu {
-  border-right: 0;
+  border-right: none !important;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.el-menu:not(.el-menu--collapse) {
+  width: 200px;
 }
 
 .el-menu .el-menu-item.is-active {
@@ -62,12 +70,10 @@
   width: 0;
 }
 
-.sidebar-el-menu:not(.el-menu--collapse) {
-  width: 200px;
-}
+
 
 .sidebar > ul {
-  height: calc(100%);
+  height: calc(100% - 60px);
 }
 
 .el-menu-item:focus,

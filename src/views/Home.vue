@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
     <el-container style="height: 100vh">
-      <el-aside width="auto">
+      <el-aside style="width: auto;">
         <side-bar></side-bar>
       </el-aside>
       <el-container>
