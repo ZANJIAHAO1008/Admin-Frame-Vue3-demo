@@ -8,9 +8,9 @@
 Vite + Vue3 + Element-Plus + Sass + Vuex + Vue-router
 
 ## 2、项目运行
-`git clone 项目地址`
+`git clone https://github.com/ZANJIAHAO1008/Zan-Admin-Frame.git`
 
-`cd 项目名称`
+`cd Zan-Admin-Frame`
 
 `npm install `
 
