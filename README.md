@@ -6,6 +6,8 @@
 
 #### 使用技术
 Vite + Vue3 + Element-Plus + Sass + Vuex + Vue-router
+#### QQ：974813758
+#### QQ群：1154737303 
 
 ## 2、项目运行
 `git clone https://github.com/ZANJIAHAO1008/Zan-Admin-Frame.git`
@@ -18,5 +20,16 @@ Vite + Vue3 + Element-Plus + Sass + Vuex + Vue-router
 
 
 ## 3、项目功能介绍
-![登陆](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/denglu.png)
-![注册](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/zhuce.png)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/denglu.png)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/zhuce.png)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/shouye.jpg)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/xgmm.jpg)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/xiaoxi.jpg)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/jbxx.png)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/jsgl.png)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/jspz.png)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/jssq.png)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/zypz.jpg)
+![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/zyglbj.jpg)
+
+# 如果有帮到您，请帮忙点个星~
