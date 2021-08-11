@@ -18,3 +18,5 @@ Vite + Vue3 + Element-Plus + Sass + Vuex + Vue-router
 
 
 ## 3、项目功能介绍
+![登陆](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/denglu.png)
+![注册](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/zhuce.png)
