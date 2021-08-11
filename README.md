@@ -19,7 +19,7 @@ Vite + Vue3 + Element-Plus + Sass + Vuex + Vue-router + Vue-i8n + Echarts
 `npm run dev`
 
 
-## 3、项目功能介绍
+## 3、项目功能截图
 ![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/denglu.png)
 ![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/zhuce.png)
 ![Zan-Admin-Frame](https://zanjiahao1008.github.io/zan-admin.github.io/root/image/shouye.jpg)
