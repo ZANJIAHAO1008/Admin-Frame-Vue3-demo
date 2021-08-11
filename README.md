@@ -5,7 +5,7 @@
 后端项目地址是 →[Midway](https://github.com/ZANJIAHAO1008/MidwayJS )
 
 #### 使用技术
-Vite + Vue3 + Element-Plus + Sass + Vuex + Vue-router
+Vite + Vue3 + Element-Plus + Sass + Vuex + Vue-router + Vue-i8n + Echarts
 #### QQ：974813758
 #### QQ群：1154737303 
 
