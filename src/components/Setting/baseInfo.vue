@@ -221,7 +221,7 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .baseInfo_footer {
   text-align: right;
 

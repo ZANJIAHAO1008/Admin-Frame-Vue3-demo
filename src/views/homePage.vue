@@ -48,7 +48,7 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .countCharts {
   //width: 1000px;
   height: 380px;

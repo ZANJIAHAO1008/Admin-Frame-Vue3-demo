@@ -187,7 +187,7 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .login-container {
   position: relative;
   width: 100%;

@@ -285,7 +285,7 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .resource {
   .custom-tree-node {
     flex: 1;

@@ -88,7 +88,7 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less">
+<style lang="scss">
 .tags {
   padding: 6px 0px;
   margin: 0px 12px;

@@ -83,26 +83,9 @@ const constantRouterMap = [
                 },
                 component: () => import("../views/messageCenter.vue")
             },
-            //
-            // {
-            //     path: "/table",
-            //     meta: {
-            //         title: '基础表格'
-            //     },
-            //     component: () => import("../views/Table.vue")
-            // },
-            // {
-            //     path: "/form",
-            //     meta: {
-            //         title: '基础表单'
-            //     },
-            //     component: () => import("../views/Form.vue")
-            // },
         ]
     }
 ]
-
-const asyncRouterMap = []
 
 const router = createRouter({
     history: createWebHashHistory(),

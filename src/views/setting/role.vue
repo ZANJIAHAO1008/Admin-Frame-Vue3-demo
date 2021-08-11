@@ -341,7 +341,7 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .distribution_content {
   height: 400px;
   overflow: auto;

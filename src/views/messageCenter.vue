@@ -104,7 +104,7 @@ export  default defineComponent({
     };
 
 
-    return{
+    return {
       ...toRefs(state),
       handleRead,
       handleDel,
@@ -113,12 +113,13 @@ export  default defineComponent({
   }
 })
 </script>
-<style lang="less" scoped>
-.messageCenter{
-  .message-title{
+<style lang="scss" scoped>
+.messageCenter {
+  .message-title {
     cursor: pointer;
   }
-  .handle-row{
+
+  .handle-row {
     margin-top: 30px;
   }
 }

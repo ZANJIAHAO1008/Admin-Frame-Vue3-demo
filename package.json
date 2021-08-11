@@ -21,8 +21,9 @@
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.4",
-    "vite": "^1.0.0-rc.13",
     "less": "^3.12.2",
-    "less-loader": "^7.0.2"
+    "less-loader": "^7.0.2",
+    "sass": "^1.37.5",
+    "vite": "^1.0.0-rc.13"
   }
 }

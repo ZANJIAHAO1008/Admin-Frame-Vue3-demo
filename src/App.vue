@@ -24,7 +24,7 @@ export default defineComponent({
   },
 })
 </script>
-<style lang="less">
+<style lang="scss">
 @import "./src/style/index.scss";
 @import "./src/style/element-ui.scss";
 </style>

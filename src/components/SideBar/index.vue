@@ -91,7 +91,7 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .sidebar {
   height: 100%;
   box-sizing: border-box;
