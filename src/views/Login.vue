@@ -2,7 +2,9 @@
   <div class="login-container">
     <div class="login-body">
       <div class="logo">
-        <img alt="" src="../assets/image/logo.png">
+        <img alt="" src="../assets/image/LG.png">
+        <p>Admin Frame</p>
+        <span>Zan Admin Frame 是一款中/后台管理系统</span>
       </div>
       <div v-show="loginStatus">
         <el-form ref="loginRef" :model="param" :rules="loginRules" hide-required-asterisk @submit.native.prevent>
@@ -194,26 +196,41 @@ export default defineComponent({
   height: 100vh;
   background-size: 100% 100%;
   //background: #F7F7F7;
-  //background-image: url(../assets/image/bg.jpg);
+  background-image: url(../assets/image/BG.png);
+
   .login-body {
     position: absolute;
     left: 50%;
     top: 50%;
     width: 400px;
-    background: #ffffff;
+    background: #FFFFFA;
     overflow: hidden;
     padding: 0 26px 24px 26px;
     box-sizing: border-box;
     margin-left: -198px;
     margin-top: -255px;
-    opacity: 0.85;
+    //opacity: 0.9;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 
     .logo {
+      padding: 12px;
+      text-align: center;
+
       img {
-        height: 141px;
-        padding-bottom: 12px;
+        height: 55px;
+      }
+
+      p {
+        font-size: 24px;
+        padding: 2px 0px;
+        //font-weight: bold;
+        //color: #909399;
+      }
+
+      span {
+        font-size: 14px;
+        color: #909399;
       }
     }
 

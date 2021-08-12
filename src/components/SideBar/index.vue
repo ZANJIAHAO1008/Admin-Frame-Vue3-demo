@@ -4,7 +4,7 @@
   }" class="sidebar">
     <div class="zan-sidebar-nav">
       <img alt="" src="../../assets/image/LG.png" style="width: 40px;height: 40px;">
-      <span v-if="!collapse">Zan Admin</span>
+      <span v-if="!collapse">Admin Frame</span>
     </div>
     <el-menu
         :default-active="onRoutes"
@@ -99,16 +99,17 @@ export default defineComponent({
 
   .zan-sidebar-nav {
     box-sizing: border-box;
-    padding: 10px 10px;
+    padding: 15px 10px 10px 10px;
     background-color: rgb(0, 21, 41);
     display: flex;
     align-items: center;
 
     span {
-      padding-left: 12px;
+      padding-left: 8px;
       color: #dedede;
-      font-size: 23px;
+      font-size: 21px;
       white-space: nowrap;
+      //font-weight: 600;
     }
   }
 

@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from 'vue-router'
+import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 import {ElMessage} from "element-plus";
 import {getToken} from '../util/auth.js';
 import NProgress from 'nprogress';//加载进度条
@@ -89,6 +89,7 @@ const constantRouterMap = [
 
 const router = createRouter({
     history: createWebHashHistory(),
+    // history: createWebHistory(),
     routes: constantRouterMap,
 })
 
