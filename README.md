@@ -4,10 +4,13 @@
 
 后端项目地址是 →[Midway](https://github.com/ZANJIAHAO1008/MidwayJS )
 
-#### 使用技术
+#### 1.1、使用技术
 Vite + Vue3 + Element-Plus + Sass + Vuex + Vue-router + Vue-i8n + Echarts
-#### QQ：974813758
-#### QQ群：1154737303 
+#### 1.2、兼容性注意
+Vite 需要 Node.js 版本 >= 12.0.0。
+#### 1.3、帮助
+##### QQ：974813758
+##### QQ群：1154737303 
 
 ## 2、项目运行
 `git clone https://github.com/ZANJIAHAO1008/Zan-Admin-Frame.git`
