@@ -203,7 +203,7 @@ export default defineComponent({
     left: 50%;
     top: 50%;
     width: 400px;
-    background: #FFFFFA;
+    background: #FFFDFB;
     overflow: hidden;
     padding: 0 26px 24px 26px;
     box-sizing: border-box;

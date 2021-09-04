@@ -88,8 +88,8 @@ const constantRouterMap = [
 ]
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    // history: createWebHistory(),
+    // history: createWebHashHistory(),
+    history: createWebHistory(),
     routes: constantRouterMap,
 })
 

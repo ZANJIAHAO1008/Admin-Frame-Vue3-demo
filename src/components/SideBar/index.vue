@@ -3,8 +3,8 @@
     width:collapse?'64px':'200px'
   }" class="sidebar">
     <div class="zan-sidebar-nav">
-      <img alt="" src="../../assets/image/LG.png" style="width: 40px;height: 40px;">
-      <span v-if="!collapse">Admin Frame</span>
+      <img alt="" src="../../assets/image/LG.png" >
+      <h1 v-if="!collapse">Admin Frame</h1>
     </div>
     <el-menu
         :default-active="onRoutes"
@@ -99,17 +99,28 @@ export default defineComponent({
 
   .zan-sidebar-nav {
     box-sizing: border-box;
-    padding: 15px 10px 10px 10px;
+    padding: 16px 10px 16px 10px;
     background-color: rgb(0, 21, 41);
     display: flex;
     align-items: center;
-
-    span {
-      padding-left: 8px;
-      color: #dedede;
-      font-size: 21px;
+    img{
+      width: 32px;
+      height: 32px;
+      padding-left: 5px;
+    }
+    h1 {
+      //padding-left: 8px;
+      //color: #dedede;
+      //font-size: 21px;
       white-space: nowrap;
-      //font-weight: 600;
+      display: inline-block;
+      height: 32px;
+      margin: 0 0 0 12px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 32px;
+      vertical-align: middle;
     }
   }
 
