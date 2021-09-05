@@ -9,6 +9,7 @@ import filters from "./filters";
 import * as _public from "./util/utils";
 import animated from 'animate.css'
 import i18n from '../src/locales/i18n.js'
+import 'amfe-flexible'
 
 const app = createApp(App)
 app.config.globalProperties._public = _public; //公共方法

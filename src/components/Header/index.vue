@@ -35,8 +35,8 @@
 
       <!-- 用户名下拉菜单 -->
       <el-dropdown size="small" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
-                        {{ username }}
+                    <span class="el-dropdown-link btn_username_group">
+                        <span class="btn_username">{{ username }}</span>
                         <i class="el-icon-caret-bottom"></i>
                     </span>
         <template #dropdown>
@@ -162,10 +162,12 @@ export default defineComponent({
   font-size: 18px;
   color: #616161;
   background: #FFF;
+  display: flex;
+  justify-content: space-between;
 
   .collapse-btn {
-    float: left;
-    padding: 0px 15px 0 30px;
+    // float: left;
+    padding: 0px 15px 0 15px;
     cursor: pointer;
     line-height: 64px;
   }
@@ -177,8 +179,8 @@ export default defineComponent({
   }
 
   .collapse-right {
-    float: right;
-    padding-right: 65px;
+    // float: right;
+    padding-right: 20px;
     height: 64px;
     display: flex;
     align-items: center;
@@ -198,6 +200,16 @@ export default defineComponent({
     width: 40px;
     height: 40px;
     border-radius: 50%;
+  }
+  .btn_username_group{
+    display: flex;
+    justify-content: space-between;
+      .btn_username{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 60px;
+  }
   }
 }
 </style>

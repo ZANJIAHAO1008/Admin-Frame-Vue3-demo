@@ -203,15 +203,15 @@ export default defineComponent({
     left: 50%;
     top: 50%;
     width: 400px;
-    background: #FFFDFB;
+    // background: #FFFDFB;
     overflow: hidden;
     padding: 0 26px 24px 26px;
     box-sizing: border-box;
     margin-left: -198px;
     margin-top: -255px;
     //opacity: 0.9;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
+    // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    // border-radius: 4px;
 
     .logo {
       padding: 12px;

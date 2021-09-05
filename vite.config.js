@@ -30,8 +30,8 @@ module.exports = {
         //     rewrite: path => path.replace(/^\/api/, '')
         // }
         '/api': {
-            target:'http://127.0.0.1:7001',//本地
-            // target: 'http://121.40.203.8:7001', //线上
+            // target:'http://127.0.0.1:7001',//本地
+            target: 'http://121.40.203.8:7001', //线上
             changeOrigin: true,
             rewrite: path => path.replace(/^\/api/, '')
             
