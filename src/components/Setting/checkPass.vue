@@ -17,7 +17,7 @@
       </el-form-item>
     </el-form>
     <template #footer>
-    <span slot="footer" class="dialog-footer">
+    <span  class="dialog-footer">
     <el-button @click="close">取 消</el-button>
     <el-button type="primary" @click="ok">确 定</el-button>
   </span>
@@ -78,7 +78,7 @@ export default defineComponent({
           {validator: validateCheckPass, trigger: 'blur'}
         ],
       },
-      userInfo: computed(() => store.state.user),//标签仓库
+      userInfo: computed(() => store.state.user.user),//标签仓库
     })
 
 

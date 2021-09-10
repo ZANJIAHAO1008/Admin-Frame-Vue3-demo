@@ -79,7 +79,7 @@ export default defineComponent({
     const route = useRoute(); //路由
 
     const state = reactive({
-      menuItem: computed(() => store.state.user.resourceList), //查询菜单栏
+      menuItem: computed(() => store.state.user.user.resourceList), //查询菜单栏
       onRoutes: computed(() => route.path),
       collapse: computed(() => {
         return store.state.collapse

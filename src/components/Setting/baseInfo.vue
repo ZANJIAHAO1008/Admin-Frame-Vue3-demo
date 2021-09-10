@@ -175,7 +175,7 @@ export default defineComponent({
         delete state.baseInfo.resourceList;
       }
       modifyBaseInfo(state.baseInfo).then(res => {
-        if (state.baseInfo.staffId == store.state.user.staffId) {
+        if (state.baseInfo.staffId == store.state.user.user.staffId) {
           //检测是否修改登陆账号信息
           ElMessage.warning({
             message: '检测到您修改了本账号的信息，3秒后回到登陆页',

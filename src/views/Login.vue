@@ -2,47 +2,93 @@
   <div class="login-container">
     <div class="login-body">
       <div class="logo">
-        <img alt="" src="../assets/image/LG.png">
+        <img alt="" src="../assets/image/LG.png" />
         <p>Admin Frame</p>
         <span>Zan Admin Frame 是一款中/后台管理系统</span>
       </div>
       <div v-show="loginStatus">
-        <el-form ref="loginRef" :model="param" :rules="loginRules" hide-required-asterisk @submit.native.prevent>
+        <el-form
+          ref="loginRef"
+          :model="param"
+          :rules="loginRules"
+          hide-required-asterisk
+          @submit.native.prevent
+        >
           <el-form-item prop="username">
-            <el-input v-model.trim="param.username" clearable placeholder="请输入用户名"
-                      prefix-icon="fa fa-user-o"></el-input>
+            <el-input
+              v-model.trim="param.username"
+              clearable
+              placeholder="请输入用户名"
+              prefix-icon="fa fa-user-o"
+            ></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input v-model.trim="param.password" clearable placeholder="请输入密码" prefix-icon="fa fa-lock"
-                      show-password @keyup.enter="submitForm"></el-input>
+            <el-input
+              v-model.trim="param.password"
+              clearable
+              placeholder="请输入密码"
+              prefix-icon="fa fa-lock"
+              show-password
+              @keyup.enter="submitForm"
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button :loading="loading" style="width: 100% " type="primary" @click="submitForm()">登录</el-button>
+            <el-button
+              :loading="loading"
+              style="width: 100%"
+              type="primary"
+              @click="submitForm()"
+              >登录</el-button
+            >
           </el-form-item>
         </el-form>
         <div class="other-content">
           <el-button type="text" disabled>其它登录方式</el-button>
-          <el-button type="text" @click="loginStatus = false;">注册账户</el-button>
+          <el-button type="text" @click="loginStatus = false"
+            >注册账户</el-button
+          >
         </div>
       </div>
       <div v-show="!loginStatus">
-        <el-form ref="registerRef" :model="register" :rules="registerRules" hide-required-asterisk
-                 @submit.native.prevent>
+        <el-form
+          ref="registerRef"
+          :model="register"
+          :rules="registerRules"
+          hide-required-asterisk
+          @submit.native.prevent
+        >
           <el-form-item prop="username">
-            <el-input v-model.trim="register.username" clearable placeholder="请输入用户名"
-                      prefix-icon="fa fa-user-o"></el-input>
+            <el-input
+              v-model.trim="register.username"
+              clearable
+              placeholder="请输入用户名"
+              prefix-icon="fa fa-user-o"
+            ></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input v-model.trim="register.password" autocomplete="off" clearable placeholder="至少6位密码"
-                      prefix-icon="fa fa-lock"></el-input>
+            <el-input
+              v-model.trim="register.password"
+              autocomplete="off"
+              clearable
+              placeholder="至少6位密码"
+              prefix-icon="fa fa-lock"
+            ></el-input>
           </el-form-item>
           <el-form-item prop="checkPass">
-            <el-input v-model.trim="register.checkPass" clearable placeholder="再次输入密码"
-                      prefix-icon="fa fa-lock"></el-input>
+            <el-input
+              v-model.trim="register.checkPass"
+              clearable
+              placeholder="再次输入密码"
+              prefix-icon="fa fa-lock"
+            ></el-input>
           </el-form-item>
           <el-form-item prop="staffName">
-            <el-input v-model.trim="register.staffName" clearable placeholder="请输入姓名"
-                      prefix-icon="fa fa-user-o"></el-input>
+            <el-input
+              v-model.trim="register.staffName"
+              clearable
+              placeholder="请输入姓名"
+              prefix-icon="fa fa-user-o"
+            ></el-input>
           </el-form-item>
           <el-form-item>
             <el-radio-group v-model="register.sex">
@@ -57,45 +103,60 @@
           <!--            <el-input clearable prefix-icon="fa fa-user-o"   v-model.trim="register.address" placeholder="请输入家庭地址"></el-input>-->
           <!--          </el-form-item>-->
           <el-form-item>
-            <el-button style="width: 100% " type="primary" @click="registerForm()">注册</el-button>
+            <el-button
+              style="width: 100%"
+              type="primary"
+              @click="registerForm()"
+              >注册</el-button
+            >
           </el-form-item>
         </el-form>
         <div class="other-content">
-          <el-button style="width: 100% " type="text" @click="loginStatus = true;">使用已有账号登陆</el-button>
+          <el-button style="width: 100%" type="text" @click="loginStatus = true"
+            >使用已有账号登陆</el-button
+          >
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import {defineComponent, getCurrentInstance, toRefs, reactive, ref} from 'vue'
-import {useRouter} from 'vue-router'
-import {login, register, getUserInfo} from '../api/user.js'
+import {
+  defineComponent,
+  getCurrentInstance,
+  toRefs,
+  reactive,
+  ref,
+} from "vue";
+import { useRouter } from "vue-router";
+import { login, register, getUserInfo } from "../api/user.js";
 import Cookies from "js-cookie";
-import {useStore} from "vuex";
+import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     const store = useStore(); //vuex仓库
-    let {proxy} = getCurrentInstance(); // vue原型
-    const loginRef = ref(null);  //登录ref
-    const registerRef = ref(null);  //注册ref
+    let { proxy } = getCurrentInstance(); // vue原型
+    const loginRef = ref(null); //登录ref
+    const registerRef = ref(null); //注册ref
     const router = useRouter(); //路由
 
-    const validatePass = (rule, value, callback) => { //密码验证
-      if (value === '') {
-        callback(new Error('请输入密码'));
+    const validatePass = (rule, value, callback) => {
+      //密码验证
+      if (value === "") {
+        callback(new Error("请输入密码"));
       } else {
-        if (state.register.checkPass !== '') {
-          registerRef.value.validateField('checkPass');
+        if (state.register.checkPass !== "") {
+          registerRef.value.validateField("checkPass");
         }
         callback();
       }
     };
-    const validateCheckPass = (rule, value, callback) => {  //重复密码验证
-      if (value === '') {
-        callback(new Error('请再次输入密码'));
+    const validateCheckPass = (rule, value, callback) => {
+      //重复密码验证
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
       } else if (value !== state.register.password) {
-        callback(new Error('两次输入密码不一致!'));
+        callback(new Error("两次输入密码不一致!"));
       } else {
         callback();
       }
@@ -104,80 +165,71 @@ export default defineComponent({
     const state = reactive({
       param: {
         username: "admin",
-        password: "123456"
+        password: "123456",
       }, //登录账号
-      loginStatus: true,//登陆or注册 true  false
+      loginStatus: true, //登陆or注册 true  false
       register: {
         username: "",
         password: "",
         checkPass: "",
-        sex: '0',
+        sex: "0",
         staffName: "",
       },
-      loginRules: { //登陆验证
+      loginRules: {
+        //登陆验证
         username: [
-          {required: true, message: "请输入用户名", trigger: "blur"}
+          { required: true, message: "请输入用户名", trigger: "blur" },
         ],
-        password: [
-          {required: true, message: "请输入密码", trigger: "blur"}
-        ]
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
-      registerRules: {  //注册验证
+      registerRules: {
+        //注册验证
         username: [
-          {required: true, message: "请输入用户名", trigger: "blur"}
+          { required: true, message: "请输入用户名", trigger: "blur" },
         ],
-        password: [
-          {validator: validatePass, trigger: 'blur'}
-        ],
-        checkPass: [
-          {validator: validateCheckPass, trigger: 'blur'}
-        ],
+        password: [{ validator: validatePass, trigger: "blur" }],
+        checkPass: [{ validator: validateCheckPass, trigger: "blur" }],
       },
-      loading: false //缓冲
-    })
+      loading: false, //缓冲
+    });
 
     const getInfo = (val) => {
-      getUserInfo({username: val}).then(res => {
+      getUserInfo({ username: val }).then((res) => {
         if (res.data) {
-          store.commit('SET_USER_INFO', res.data);
+          store.commit("SET_USER_INFO", res.data);
         }
-      })
-    }
-
+      });
+    };
 
     const submitForm = () => {
-      loginRef.value.validate(valid => {
+      loginRef.value.validate((valid) => {
         if (valid) {
           state.loading = true;
           proxy._public.debounce(() => {
-            login(
-                {
-                  ...state.param
-                }
-            ).then(res => {
+            login({
+              ...state.param,
+            }).then((res) => {
               if (res?.data) {
                 Cookies.set("token", res.data); //存储token
                 getInfo(state.param.username); //查询个人信息
-                router.push({path: '/homePage'})
+                router.push({ path: "/homePage" });
               }
-            })
+            });
             state.loading = false;
-          }, 1000)
+          }, 1000);
         }
       });
-    }
+    };
 
     const registerForm = () => {
-      registerRef.value.validate(valid => {
+      registerRef.value.validate((valid) => {
         if (valid) {
           register({
-            ...state.register
-          }).then(() => {
-
-          })
+            ...state.register,
+          }).then(() => {});
         }
       });
-    }
+    };
 
     return {
       ...toRefs(state),
@@ -185,9 +237,9 @@ export default defineComponent({
       registerRef,
       submitForm,
       registerForm,
-    }
-  }
-})
+    };
+  },
+});
 </script>
 <style lang="scss" scoped>
 .login-container {
