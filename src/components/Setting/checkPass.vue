@@ -18,8 +18,8 @@
     </el-form>
     <template #footer>
     <span  class="dialog-footer">
-    <el-button @click="close">取 消</el-button>
-    <el-button type="primary" @click="ok">确 定</el-button>
+    <el-button size="medium" @click="close">取 消</el-button>
+    <el-button size="medium" type="primary" @click="ok">确 定</el-button>
   </span>
     </template>
   </el-dialog>

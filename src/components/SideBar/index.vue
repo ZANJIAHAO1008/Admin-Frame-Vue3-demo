@@ -1,55 +1,81 @@
 <template>
-  <div :style="{
-    width:collapse?'64px':'200px'
-  }" class="sidebar">
+  <div
+    :style="{
+      width: collapse ? '64px' : '200px',
+    }"
+    class="sidebar"
+  >
     <div class="zan-sidebar-nav">
-      <img alt="" src="../../assets/image/LG.png" >
+      <img alt="" src="../../assets/image/LG.png" />
       <h1 v-if="!collapse">Admin Frame</h1>
     </div>
     <el-menu
-        :default-active="onRoutes"
-        class="sidebar-el-menu"
-        :collapse="collapse"
-        :collapse-transition="true"
-        unique-opened
-        background-color="#001529"
-        active-text-color="#ffffff"
-        text-color="#C0C4CC"
-        router
+      :default-active="onRoutes"
+      class="sidebar-el-menu"
+      :collapse="collapse"
+      :collapse-transition="true"
+      unique-opened
+      background-color="#001529"
+      active-text-color="#ffffff"
+      text-color="#C0C4CC"
+      router
     >
       <template v-for="item in menuItem">
         <template v-if="item.children.length > 0">
           <el-submenu :key="item.resourceUrl" :index="item.resourceUrl">
             <template #title>
               <i :class="item.resourceIcon"></i>
-              <span class="sidebar-title">{{ item.resourceName }}</span>
+              <span
+                :class="
+                  item.resourceIcon
+                    ? 'sidebar-title'
+                    : 'sidebar-title sidebar-nullIcon'
+                "
+                >{{ item.resourceName }}</span
+              >
             </template>
             <template v-for="childItem in item.children">
               <el-submenu
-                  v-if="childItem.children.length >0"
-                  :key="childItem.resourceUrl"
-                  :index="childItem.resourceUrl"
+                v-if="childItem.children.length > 0"
+                :key="childItem.resourceUrl"
+                :index="childItem.resourceUrl"
               >
                 <template #title>
                   <i :class="childItem.resourceIcon"></i>
-                  <span class="sidebar-title">{{ childItem.resourceName }}</span>
+                  <span
+                    :class="
+                      childItem.resourceIcon
+                        ? 'sidebar-title'
+                        : 'sidebar-title sidebar-nullIcon'
+                    "
+                    >{{ childItem.resourceName }}</span
+                  >
                 </template>
                 <el-menu-item
-                    v-for="(grandsonItem, i) in childItem.children"
-                    :key="i"
-                    :index="grandsonItem.resourceUrl"
+                  v-for="(grandsonItem, i) in childItem.children"
+                  :key="i"
+                  :index="grandsonItem.resourceUrl"
                 >
-                  <span class="sidebar-title">{{ grandsonItem.resourceName }}</span>
+                  <span class="sidebar-title">{{
+                    grandsonItem.resourceName
+                  }}</span>
                 </el-menu-item>
               </el-submenu>
               <el-menu-item
-                  v-else
-                  :key="childItem.resourceUrl"
-                  :index="childItem.resourceUrl"
+                v-else
+                :key="childItem.resourceUrl"
+                :index="childItem.resourceUrl"
               >
                 <template #title>
                   <i :class="childItem.resourceIcon"></i>
-                  <span class="sidebar-title">{{ childItem.resourceName }}</span>
+                  <span
+                    :class="
+                      childItem.resourceIcon
+                        ? 'sidebar-title'
+                        : 'sidebar-title sidebar-nullIcon'
+                    "
+                    >{{ childItem.resourceName }}</span
+                  >
                 </template>
               </el-menu-item>
             </template>
@@ -59,7 +85,9 @@
         <template v-else>
           <el-menu-item :key="item.resourceUrl" :index="item.resourceUrl">
             <i :class="item.resourceIcon"></i>
-            <template #title class="sidebar-title">{{ item.resourceName }}</template>
+            <template #title class="sidebar-title">{{
+              item.resourceName
+            }}</template>
           </el-menu-item>
         </template>
       </template>
@@ -67,8 +95,8 @@
   </div>
 </template>
 <script>
-import {defineComponent, toRefs, reactive, ref, computed, watch} from "vue";
-import {useRoute, useRouter} from "vue-router";
+import { defineComponent, toRefs, reactive, ref, computed, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 export default defineComponent({
@@ -82,7 +110,7 @@ export default defineComponent({
       menuItem: computed(() => store.state.user.user.resourceList), //查询菜单栏
       onRoutes: computed(() => route.path),
       collapse: computed(() => {
-        return store.state.collapse
+        return store.state.collapse;
       }),
     });
     return {
@@ -95,7 +123,7 @@ export default defineComponent({
 .sidebar {
   height: 100%;
   box-sizing: border-box;
-  transition: width .3s ease-in-out;
+  transition: width 0.3s ease-in-out;
 
   .zan-sidebar-nav {
     box-sizing: border-box;
@@ -103,7 +131,7 @@ export default defineComponent({
     background-color: rgb(0, 21, 41);
     display: flex;
     align-items: center;
-    img{
+    img {
       width: 32px;
       height: 32px;
       padding-left: 5px;

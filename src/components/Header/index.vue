@@ -100,7 +100,7 @@ export default defineComponent({
     const baseInfoRef = ref("null");
     const state = reactive({
       collapse: computed(() => store.state.collapse),
-      username: computed(() => store.state.user.user.staffName || '待完善'),
+      username: computed(() => store.state.user.user.staffName || "待完善"),
       passVisible: false, //修改密码弹框
       baseVisible: false, //基本信息弹框
     });
@@ -147,6 +147,9 @@ export default defineComponent({
       //用户下拉菜单
       if (command == "signOut") {
         Cookies.remove("token"); //清空token 1秒后回到登录页
+        store.commit("delRightMenu", { //退出清空所有菜单
+          whiteTags:[],
+        });
         router.push("/login");
         ElMessage.success("登出成功");
       } else if (command == "checkPass") {
@@ -241,7 +244,7 @@ export default defineComponent({
       text-overflow: ellipsis;
       white-space: nowrap;
       width: 60px;
-      padding-right:8px ;
+      padding-right: 8px;
     }
   }
 }

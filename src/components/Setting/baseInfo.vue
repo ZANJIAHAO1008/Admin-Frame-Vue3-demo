@@ -45,7 +45,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row v-if="$store.state.user.user.username === 'admin'">
         <el-col :span="10">
           <el-form-item label="账号状态：">
             <el-select v-model="baseInfo.userState" placeholder="请选择">
@@ -91,8 +91,8 @@
         <el-col :span="20">
           <div class="baseInfo_footer">
             <el-form-item>
-              <el-button @click="close">取消</el-button>
-              <el-button type="primary" @click="relation">确定</el-button>
+              <el-button size="medium" @click="close">取消</el-button>
+              <el-button  size="medium"  type="primary" @click="relation">确定</el-button>
             </el-form-item>
           </div>
         </el-col>

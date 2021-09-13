@@ -22,7 +22,7 @@
         </el-form-item>
         <el-form-item>
           <el-button icon="el-icon-search" size="small" type="primary" @click="getInfo">查 询</el-button>
-          <el-button plain size="small" @click="openLog({},'add')">新增角色</el-button>
+          <el-button type="primary" size="small" @click="openLog({},'add')">新增角色</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -105,8 +105,8 @@
       </el-form>
       <template #footer>
     <span class="dialog-footer">
-      <el-button @click="close">取 消</el-button>
-      <el-button type="primary" @click="ok">确 定</el-button>
+      <el-button size="medium" @click="close">取 消</el-button>
+      <el-button size="medium" type="primary" @click="ok">确 定</el-button>
     </span>
       </template>
     </el-dialog>
@@ -129,8 +129,8 @@
       </div>
       <template #footer>
     <span class="dialog-footer">
-      <el-button @click="closeAuthorize">取 消</el-button>
-      <el-button type="primary" @click="saveResource">确 定</el-button>
+      <el-button size="medium" @click="closeAuthorize">取 消</el-button>
+      <el-button size="medium" type="primary" @click="saveResource">确 定</el-button>
     </span>
       </template>
     </el-dialog>

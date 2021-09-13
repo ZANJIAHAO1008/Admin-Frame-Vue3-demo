@@ -296,9 +296,6 @@ export default defineComponent({
   .home_charts {
     height: 380px;
   }
-  .m-t8 {
-    margin-top: 8px;
-  }
   .card-header {
     display: flex;
     justify-content: space-between;

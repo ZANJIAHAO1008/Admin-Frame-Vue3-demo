@@ -43,8 +43,6 @@ import {
 import { useRoute, useRouter, onBeforeRouteUpdate } from "vue-router";
 import { useStore } from "vuex";
 import { ElMessage } from "element-plus";
-import router from "../../router";
-
 export default defineComponent({
   name: "tags",
   setup() {

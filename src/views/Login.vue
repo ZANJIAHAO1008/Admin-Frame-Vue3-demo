@@ -12,7 +12,7 @@
           :model="param"
           :rules="loginRules"
           hide-required-asterisk
-          @submit.native.prevent
+          @submit.prevent
         >
           <el-form-item prop="username">
             <el-input
@@ -55,7 +55,7 @@
           :model="register"
           :rules="registerRules"
           hide-required-asterisk
-          @submit.native.prevent
+          @submit.prevent
         >
           <el-form-item prop="username">
             <el-input
@@ -132,6 +132,7 @@ import { useRouter } from "vue-router";
 import { login, register, getUserInfo } from "../api/user.js";
 import Cookies from "js-cookie";
 import { useStore } from "vuex";
+import { ElMessageBox } from "element-plus";
 export default defineComponent({
   setup() {
     const store = useStore(); //vuex仓库
@@ -164,8 +165,8 @@ export default defineComponent({
 
     const state = reactive({
       param: {
-        username: "admin",
-        password: "123456",
+        username: "",
+        password: "",
       }, //登录账号
       loginStatus: true, //登陆or注册 true  false
       register: {
@@ -194,6 +195,7 @@ export default defineComponent({
     });
 
     const getInfo = (val) => {
+      //查询详情
       getUserInfo({ username: val }).then((res) => {
         if (res.data) {
           store.commit("SET_USER_INFO", res.data);
@@ -202,6 +204,7 @@ export default defineComponent({
     };
 
     const submitForm = () => {
+      //登陆
       loginRef.value.validate((valid) => {
         if (valid) {
           state.loading = true;
@@ -216,17 +219,34 @@ export default defineComponent({
               }
             });
             state.loading = false;
-          }, 1000);
+          }, 300);
         }
       });
     };
 
     const registerForm = () => {
+      //注册
       registerRef.value.validate((valid) => {
         if (valid) {
           register({
             ...state.register,
-          }).then(() => {});
+          }).then((res) => {
+            if (!res) {
+              return false;
+            }
+            ElMessageBox.confirm("注册成功,是否立即登陆 ?", "提示", {
+              confirmButtonText: "确定",
+              cancelButtonText: "取消",
+              type: "success",
+            })
+              .then(() => {
+                //直接登陆
+                state.param.username = state.register.username;
+                state.param.password = state.register.password;
+                submitForm();
+              })
+              .catch(() => {});
+          });
         }
       });
     };
@@ -247,7 +267,6 @@ export default defineComponent({
   width: 100%;
   height: 100vh;
   background-size: 100% 100%;
-  //background: #F7F7F7;
   background-image: url(../assets/image/BG.png);
 
   .login-body {
@@ -255,15 +274,11 @@ export default defineComponent({
     left: 50%;
     top: 50%;
     width: 400px;
-    // background: #FFFDFB;
     overflow: hidden;
     padding: 0 26px 24px 26px;
     box-sizing: border-box;
     margin-left: -198px;
     margin-top: -255px;
-    //opacity: 0.9;
-    // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    // border-radius: 4px;
 
     .logo {
       padding: 12px;
@@ -276,8 +291,6 @@ export default defineComponent({
       p {
         font-size: 24px;
         padding: 2px 0px;
-        //font-weight: bold;
-        //color: #909399;
       }
 
       span {

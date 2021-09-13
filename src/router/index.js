@@ -83,6 +83,27 @@ const constantRouterMap = [
                 },
                 component: () => import("../views/messageCenter.vue")
             },
+            {
+                path: "/encyclopedia",
+                meta: {
+                    title: '宠物百科'
+                },
+                component: () => import("../views/content/encyclopedia.vue")
+            },
+            {
+                path: "/articleManage",
+                meta: {
+                    title: '文章管理'
+                },
+                component: () => import("../views/content/articleManage.vue")
+            },
+            {
+                path: "/articleCheck",
+                meta: {
+                    title: '文章审核'
+                },
+                component: () => import("../views/content/articleCheck.vue")
+            },
         ]
     }
 ]
