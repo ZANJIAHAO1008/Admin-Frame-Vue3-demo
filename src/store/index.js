@@ -20,9 +20,8 @@ export default createStore({
                 if (data.whiteTags.includes(tags.path)) {
                     tagList.push(tags);
                 }
-            })
+            });
             state.tagsList = [...tagList];
-            console.log(state.tagsList, data.whiteTags)
         },
         // 侧边栏折叠
         switchCollapse(state, data) {

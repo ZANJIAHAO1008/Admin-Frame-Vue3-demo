@@ -194,9 +194,9 @@ export default defineComponent({
       loading: false, //缓冲
     });
 
-    const getInfo = (val) => {
+    const getInfo = () => {
       //查询详情
-      getUserInfo({ username: val }).then((res) => {
+      getUserInfo().then((res) => {
         if (res.data) {
           store.commit("SET_USER_INFO", res.data);
         }
@@ -214,7 +214,7 @@ export default defineComponent({
             }).then((res) => {
               if (res?.data) {
                 Cookies.set("token", res.data); //存储token
-                getInfo(state.param.username); //查询个人信息
+                getInfo(); //查询个人信息
                 router.push({ path: "/homePage" });
               }
             });

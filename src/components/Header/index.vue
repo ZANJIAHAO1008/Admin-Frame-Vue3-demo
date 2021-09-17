@@ -147,8 +147,9 @@ export default defineComponent({
       //用户下拉菜单
       if (command == "signOut") {
         Cookies.remove("token"); //清空token 1秒后回到登录页
-        store.commit("delRightMenu", { //退出清空所有菜单
-          whiteTags:[],
+        store.commit("delRightMenu", {
+          //退出清空所有菜单
+          whiteTags: [],
         });
         router.push("/login");
         ElMessage.success("登出成功");

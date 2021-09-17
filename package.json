@@ -1,7 +1,7 @@
 {
-  "name": "Zan-Admin-Frame",
+  "name": "Admin-Frame",
   "version": "0.0.1",
-  "description": "Zan-Admin-Frame 后台管理系统",
+  "description": "Admin-Frame 后台管理系统",
   "scripts": {
     "dev": "vite",
     "build": "vite build"

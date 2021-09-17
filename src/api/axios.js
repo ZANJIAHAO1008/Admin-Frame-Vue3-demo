@@ -119,10 +119,10 @@ function httpErrorStatusHandle(error) {
     if (error.message.includes('timeout')) message = '网络请求超时！';
     if (error.message.includes('Network')) message = window.navigator.onLine ? '服务端异常！' : '您断网了！';
 
-    ElMessage({
-        type: 'error',
-        message
-    })
+    // ElMessage({
+    //     type: 'error',
+    //     message
+    // })
 
     if(error.response.status == '401'){
         //如果登陆失效立马回到登录页
